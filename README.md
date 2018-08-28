@@ -1,5 +1,7 @@
 # Continuously train a cloud-based machine learning model from an on-premise database
 
+![Architecture](doc/source/images/architecture.png)
+
 ### Loading Data from a csv to a DB2 database
 
 1. Download the [CSV](https://github.com/IBMDataScience/buildings_blog/blob/master/buildings_data_17.csv).
