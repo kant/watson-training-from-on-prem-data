@@ -2,6 +2,13 @@
 
 ![Architecture](doc/source/images/architecture.png)
 
+## Flow
+
+1. Source data is retained in on-premise Db2 database.
+1. Data is accessible to Watson Studio via a Secure Gateway
+1. Secure gateway is utilized to train a cloud-based machine learning model
+1. Training feedback is stored in Db2 Warehouse for continuous learning
+
 ## Steps
 
 1. Load sample data into an on-prem Db2 database
