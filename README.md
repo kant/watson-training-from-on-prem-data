@@ -2,7 +2,7 @@
 
 ![Architecture](doc/source/images/architecture.png)
 
-### Loading Data from a csv to a DB2 database
+### Loading Data from a csv to a Db2 database
 
 1. Download the [CSV](https://github.com/IBMDataScience/buildings_blog/blob/master/buildings_data_17.csv).
 
@@ -20,13 +20,13 @@
 
 1. Grant connect,load on database to user newusers
 
-1. DB2 connect to database user newuser
+1. Db2 connect to database user newuser
 
 1. Create table
 
 1. Load the table
 
-### Connect to DB2 on-prem from Watson Studio
+### Connect to Db2 on-prem from Watson Studio
 
 [Configure a secure gateway](https://console.bluemix.net/docs/services/SecureGateway/index.html#getting-started-with-sg)
 
@@ -55,18 +55,18 @@ Use the GUI to add the IP address, Port number, choose TCP/IP , No
 authentication. If you see a Green heartbeat on your gateway, It is up and
 running!
 
-Connect to DB2 from Watson Studio
+Connect to Db2 from Watson Studio
 
 #### On Watson Studio
 
-Add to Project-> Connection-> IBM DB2
+Add to Project-> Connection-> IBM Db2
 
 Enter the hostname, port, Db name, user name, password, select the secure
 gateway
 
 Add to Project-> Connected asset-> select the table from the DB
 
-> Watson Machine Learning models do not support Data assets from DB2 on-prem,
+> Watson Machine Learning models do not support Data assets from Db2 on-prem,
 > so we now have to convert the Data asset into a csv
 
 #### Refine the asset
@@ -92,9 +92,9 @@ Use these endpoints in your notebook on new data.
 
 #### Configure Performance Monitoring:
 
-> Watson Studio only supports DB2 Watson on Cloud tables as Feedback tables
+> Watson Studio only supports Db2 Watson on Cloud tables as Feedback tables
 
-#### On DB2 Warehouse on Cloud
+#### On Db2 Warehouse on Cloud
 
 Create a Row-organized table (Feedback table)
 
