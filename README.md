@@ -115,3 +115,24 @@ This column has a not null constraint. To load new data into the Feedback table-
 1. Add a column called `_TRAINING` in your dataset
 
 1. Alter the table and remove the NOT NULL constraint from the column
+
+## Commands
+
+### NON-admin user:
+
+    Useradd newuser
+    PASSWD newuser
+    GRANT connect,load on WML_DB to user newuser
+
+    db2 "CREATE TABLE violations_2018(ID INTEGER,VIOLATION_CODE VARCHAR(20),INSPECTOR_ID VARCHAR(15),INSPECTION_STATUS VARCHAR(10),INSPECTION_CATEGORY VARCHAR(10),DEPARTMENT_BUREAU VARCHAR(30),ADDRESS VARCHAR(250),LATITUDE DOUBLE,LONGITUDE DOUBLE)"
+
+    db2 "load from /home/ibm_admin/Desktop/Shruthi/violations_2018.csv of DEL replace into Violations_2018"
+
+
+### On Db2 Warehouse on Cloud
+
+    CREATE TRIGGER feedback_trigger NO CASCADE BEFORE INSERT ON violations_feedback REFERENCING NEW AS n FOR EACH ROW SET n."_training"=CURRENT_TIMESTAMP
+
+    CREATE TABLE violations_feedback(ID INTEGER,VIOLATION_CODE VARCHAR(20),INSPECTOR_ID VARCHAR(15),INSPECTION_STATUS VARCHAR(10),INSPECTION_CATEGORY VARCHAR(10),DEPARTMENT_BUREAU VARCHAR(30),ADDRESS VARCHAR(250),LATITUDE DOUBLE,LONGITUDE DOUBLE,"_TRAINING" TIMESTAMP NOT NULL) ORGANIZE BY ROW
+
+    Alter table violations_feedback alter column "_TRAINING" set NOT NULL
