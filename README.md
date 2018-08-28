@@ -45,6 +45,12 @@ of the dataset used in this pattern will not incur billing.
 
 ### Load sample data into an on-premise Db2 database
 
+For the purposes of this code pattern, we'll be using Db2 Developer-C (the
+free, community edition of Db2 for developers). However, if you already have an
+on-premise Db2 instance, feel free to substitute that instead. We'll be
+populating the database with a sample dataset of building code violations,
+provided by the city of Chicago.
+
 As a NON-admin user:
 
     Useradd newuser
