@@ -11,11 +11,10 @@
 
 ## Included components
 
-- [IBM Db2 Warehouse](https://www.ibm.com/us-en/marketplace/db2-warehouse): A
+* [IBM Db2 Warehouse](https://www.ibm.com/us-en/marketplace/db2-warehouse): A
   client-managed, private cloud data warehouse for Docker container supported
   infrastructures.
-
-- [IBM Watson Studio](https://www.ibm.com/cloud/watson-studio): Build and train
+* [IBM Watson Studio](https://www.ibm.com/cloud/watson-studio): Build and train
   AI models, and prepare and analyze data, in a single, integrated environment.
 
 ## Steps
