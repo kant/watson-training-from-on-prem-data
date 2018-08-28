@@ -2,6 +2,14 @@
 
 ![Architecture](doc/source/images/architecture.png)
 
+## Steps
+
+1. Load sample data into an on-prem Db2 database
+1. Configure a secure gateway to IBM Cloud
+1. Create a Db2 Warehouse on IBM Cloud
+1. Create a Watson Studio instance
+1. Create a machine learning model
+
 ### Loading Data from a csv to a Db2 database
 
 1. Download the [CSV](https://github.com/IBMDataScience/buildings_blog/blob/master/buildings_data_17.csv).
