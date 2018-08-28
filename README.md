@@ -39,6 +39,10 @@ do for free.
 
 ### Create a Db2 Warehouse on IBM Cloud
 
+Next, you'll need to [create a Db2 Warehouse
+instance](https://console.bluemix.net/catalog/services/db2-warehouse). The size
+of the dataset used in this pattern will not incur billing.
+
     CREATE TRIGGER feedback_trigger NO CASCADE BEFORE INSERT ON violations_feedback REFERENCING NEW AS n FOR EACH ROW SET n."_training"=CURRENT_TIMESTAMP
 
     CREATE TABLE violations_feedback(ID INTEGER,VIOLATION_CODE VARCHAR(20),INSPECTOR_ID VARCHAR(15),INSPECTION_STATUS VARCHAR(10),INSPECTION_CATEGORY VARCHAR(10),DEPARTMENT_BUREAU VARCHAR(30),ADDRESS VARCHAR(250),LATITUDE DOUBLE,LONGITUDE DOUBLE,"_TRAINING" TIMESTAMP NOT NULL) ORGANIZE BY ROW
