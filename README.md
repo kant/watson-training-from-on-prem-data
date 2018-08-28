@@ -1,5 +1,7 @@
 # Continuously train a cloud-based machine learning model from an on-premise database
 
+TODO
+
 ![Architecture](doc/source/images/architecture.png)
 
 ## Flow
@@ -21,13 +23,37 @@
 
 ## Steps
 
-1. Load sample data into an on-prem Db2 database
-1. Configure a secure gateway to IBM Cloud
-1. Create a Db2 Warehouse on IBM Cloud
-1. Create a Watson Studio instance
-1. Create a machine learning model
+1. [Create a Watson Studio instance](#create-a-watson-studio-instance)
+1. [Create a Db2 Warehouse on IBM Cloud](#create-a-db2-warehouse-on-ibm-cloud)
+1. [Load sample data into an on-premise Db2 database](#load-sample-data-into-an-on-premise-db2-database)
+1. [Configure a secure gateway to IBM Cloud](#configure-a-secure-gateway-to-ibm-cloud)
+1. [Connect to on-premise Db2 database from Watson Studio](#connect-to-on-premise-db2-database-from-watson-studio)
+1. [Create a machine learning model](#create-a-machine-learning-model)
+1. [Enable continuous learning](#enable-continuous-learning)
 
-### Loading Data from a csv to a Db2 database
+### Create a Watson Studio instance
+
+TODO
+
+### Create a Db2 Warehouse on IBM Cloud
+
+    CREATE TRIGGER feedback_trigger NO CASCADE BEFORE INSERT ON violations_feedback REFERENCING NEW AS n FOR EACH ROW SET n."_training"=CURRENT_TIMESTAMP
+
+    CREATE TABLE violations_feedback(ID INTEGER,VIOLATION_CODE VARCHAR(20),INSPECTOR_ID VARCHAR(15),INSPECTION_STATUS VARCHAR(10),INSPECTION_CATEGORY VARCHAR(10),DEPARTMENT_BUREAU VARCHAR(30),ADDRESS VARCHAR(250),LATITUDE DOUBLE,LONGITUDE DOUBLE,"_TRAINING" TIMESTAMP NOT NULL) ORGANIZE BY ROW
+
+    Alter table violations_feedback alter column "_TRAINING" set NOT NULL
+
+### Load sample data into an on-premise Db2 database
+
+As a NON-admin user:
+
+    Useradd newuser
+    PASSWD newuser
+    GRANT connect,load on WML_DB to user newuser
+
+    db2 "CREATE TABLE violations_2018(ID INTEGER,VIOLATION_CODE VARCHAR(20),INSPECTOR_ID VARCHAR(15),INSPECTION_STATUS VARCHAR(10),INSPECTION_CATEGORY VARCHAR(10),DEPARTMENT_BUREAU VARCHAR(30),ADDRESS VARCHAR(250),LATITUDE DOUBLE,LONGITUDE DOUBLE)"
+
+    db2 "load from /home/ibm_admin/Desktop/Shruthi/violations_2018.csv of DEL replace into Violations_2018"
 
 1. Download the [CSV](https://github.com/IBMDataScience/buildings_blog/blob/master/buildings_data_17.csv).
 
@@ -51,7 +77,7 @@
 
 1. Load the table
 
-### Connect to Db2 on-prem from Watson Studio
+### Configure a secure gateway to IBM Cloud
 
 [Configure a secure gateway](https://console.bluemix.net/docs/services/SecureGateway/index.html#getting-started-with-sg)
 
@@ -67,109 +93,6 @@ Update the config file with the gateway ID and token that you see on your
 secure gateway service:
 
     vi /etc/ibm/sgenvironment.conf
-
-#### Start the client
-
-    /usr/bin/sudo /bin/systemctl start securegateway_client
-
-Add the IP address to the Secure gateway's Access control list.
-
-#### Configure the Destination
-
-Use the GUI to add the IP address, Port number, choose TCP/IP , No
-authentication. If you see a Green heartbeat on your gateway, It is up and
-running!
-
-Connect to Db2 from Watson Studio
-
-#### On Watson Studio
-
-Add to Project-> Connection-> IBM Db2
-
-Enter the hostname, port, Db name, user name, password, select the secure
-gateway
-
-Add to Project-> Connected asset-> select the table from the DB
-
-> Watson Machine Learning models do not support Data assets from Db2 on-prem,
-> so we now have to convert the Data asset into a csv
-
-#### Refine the asset
-
-Data Assets-> Refine-> Add operation-> run
-
-It is now saved as a csv
-
-#### Create a WML model
-
-Associate a ML service-
-
-Associate an IBM analytics service- (Spark)
-
-Select the Type of classification, data asset, Input and output features,
-   estimators and the final model.
-
-#### Deploy the model
-
-Use these endpoints in your notebook on new data.
-
-### Continuous Learning: Re-training the model
-
-#### Configure Performance Monitoring:
-
-> Watson Studio only supports Db2 Watson on Cloud tables as Feedback tables
-
-#### On Db2 Warehouse on Cloud
-
-Create a Row-organized table (Feedback table)
-
-Load data into your table
-
-#### Performance Monitoring
-
-Select the feedback metric, the feedback table, Trigger event (Eg: after 50
-rows are added to the table)
-
-When the Trigger event occurs, It will pull in new data from the Feedback table
-and re-train your model. If the new model performs better, this will be
-deployed.
-
-> After Watson Studio uses the Feedback table, it writes a column `_TRAINING`
-> into the Feedback table, with Timestamp.
-
-This column has a not null constraint. To load new data into the Feedback table-
-
-1. Add a column called `_TRAINING` in your dataset
-
-1. Alter the table and remove the NOT NULL constraint from the column
-
-## Commands
-
-### NON-admin user:
-
-    Useradd newuser
-    PASSWD newuser
-    GRANT connect,load on WML_DB to user newuser
-
-    db2 "CREATE TABLE violations_2018(ID INTEGER,VIOLATION_CODE VARCHAR(20),INSPECTOR_ID VARCHAR(15),INSPECTION_STATUS VARCHAR(10),INSPECTION_CATEGORY VARCHAR(10),DEPARTMENT_BUREAU VARCHAR(30),ADDRESS VARCHAR(250),LATITUDE DOUBLE,LONGITUDE DOUBLE)"
-
-    db2 "load from /home/ibm_admin/Desktop/Shruthi/violations_2018.csv of DEL replace into Violations_2018"
-
-
-### On Db2 Warehouse on Cloud
-
-    CREATE TRIGGER feedback_trigger NO CASCADE BEFORE INSERT ON violations_feedback REFERENCING NEW AS n FOR EACH ROW SET n."_training"=CURRENT_TIMESTAMP
-
-    CREATE TABLE violations_feedback(ID INTEGER,VIOLATION_CODE VARCHAR(20),INSPECTOR_ID VARCHAR(15),INSPECTION_STATUS VARCHAR(10),INSPECTION_CATEGORY VARCHAR(10),DEPARTMENT_BUREAU VARCHAR(30),ADDRESS VARCHAR(250),LATITUDE DOUBLE,LONGITUDE DOUBLE,"_TRAINING" TIMESTAMP NOT NULL) ORGANIZE BY ROW
-
-    Alter table violations_feedback alter column "_TRAINING" set NOT NULL
-
-## Secure gateway
-
-ACL:
-
-    acl allow 9.236.239.165:50000
-    acl allow 127.0.1.1:50000
 
 `sgenvironment.conf`:
 
@@ -230,3 +153,83 @@ ACL:
 
     export OPERSYS=Ubuntu
     export VERSION=18
+
+`/opt/ibm/securegateway/client/securegw_acl.txt`:
+
+    acl allow 9.236.239.165:50000
+    acl allow 127.0.1.1:50000
+
+#### Start the client
+
+    /usr/bin/sudo /bin/systemctl start securegateway_client
+
+Add the IP address to the Secure gateway's Access control list.
+
+#### Configure the Destination
+
+Use the GUI to add the IP address, Port number, choose TCP/IP , No
+authentication. If you see a Green heartbeat on your gateway, It is up and
+running!
+
+### Connect to on-premise Db2 database from Watson Studio
+
+Add to Project-> Connection-> IBM Db2
+
+Enter the hostname, port, Db name, user name, password, select the secure
+gateway
+
+Add to Project-> Connected asset-> select the table from the DB
+
+> Watson Machine Learning models do not support Data assets from Db2 on-prem,
+> so we now have to convert the Data asset into a csv
+
+#### Refine the asset
+
+Data Assets-> Refine-> Add operation-> run
+
+It is now saved as a csv
+
+### Create a machine learning model
+
+#### Create a WML model
+
+Associate a ML service-
+
+Associate an IBM analytics service- (Spark)
+
+Select the Type of classification, data asset, Input and output features,
+   estimators and the final model.
+
+#### Deploy the model
+
+Use these endpoints in your notebook on new data.
+
+### Enable continuous learning
+
+#### Configure Performance Monitoring:
+
+> Watson Studio only supports Db2 Watson on Cloud tables as Feedback tables
+
+#### On Db2 Warehouse on Cloud
+
+Create a Row-organized table (Feedback table)
+
+Load data into your table
+
+#### Performance Monitoring
+
+Select the feedback metric, the feedback table, Trigger event (Eg: after 50
+rows are added to the table)
+
+When the Trigger event occurs, It will pull in new data from the Feedback table
+and re-train your model. If the new model performs better, this will be
+deployed.
+
+> After Watson Studio uses the Feedback table, it writes a column `_TRAINING`
+> into the Feedback table, with Timestamp.
+
+This column has a not null constraint. To load new data into the Feedback table-
+
+1. Add a column called `_TRAINING` in your dataset
+
+1. Alter the table and remove the NOT NULL constraint from the column
