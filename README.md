@@ -33,7 +33,9 @@ TODO
 
 ### Create a Watson Studio instance
 
-TODO
+In order to build and train your machine learning model, you'll need to [sign
+up for Watson Studio](https://www.ibm.com/cloud/watson-studio), which you can
+do for free.
 
 ### Create a Db2 Warehouse on IBM Cloud
 
