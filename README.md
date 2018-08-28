@@ -51,6 +51,10 @@ on-premise Db2 instance, feel free to substitute that instead. We'll be
 populating the database with a sample dataset of building code violations,
 provided by the city of Chicago.
 
+The fastest way to get started with Db2 Developer-C is by following this
+[how-to
+guide](https://developer.ibm.com/code/howtos/downloading-and-installing-db2-developer-c-on-ubuntu-linux/).
+
 As a NON-admin user:
 
     Useradd newuser
