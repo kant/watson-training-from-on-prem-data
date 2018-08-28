@@ -136,3 +136,70 @@ This column has a not null constraint. To load new data into the Feedback table-
     CREATE TABLE violations_feedback(ID INTEGER,VIOLATION_CODE VARCHAR(20),INSPECTOR_ID VARCHAR(15),INSPECTION_STATUS VARCHAR(10),INSPECTION_CATEGORY VARCHAR(10),DEPARTMENT_BUREAU VARCHAR(30),ADDRESS VARCHAR(250),LATITUDE DOUBLE,LONGITUDE DOUBLE,"_TRAINING" TIMESTAMP NOT NULL) ORGANIZE BY ROW
 
     Alter table violations_feedback alter column "_TRAINING" set NOT NULL
+
+## Secure gateway
+
+ACL:
+
+    acl allow 9.236.239.165:50000
+    acl allow 127.0.1.1:50000
+
+`sgenvironment.conf`:
+
+    #!/bin/bash
+    #
+    # Stop and Restart the client during install or upgrade (Yes or No)
+    # If manually modifying the following, accepted values are: Yes, yes, No, or no
+    RESTART_CLIENT=No
+
+    # Configuration ID to connect
+    # If manually modifying the following, accepted values are: "<your gateway ids>" separated by spaces
+
+    GATEWAY_ID=$YOUR_GATEWAY_ID
+    export SECGW_GATEWAYID="$GATEWAY_ID"
+
+    # Security Token for this Configuration ID (if any)
+    # If manually modifying the following, accepted values are: <your gateway id security tokens> ('none' if no token, separated by '--' otherwise)
+    SECTOKEN=$YOUR_GATEWAY_ID_SECURITY_TOKEN
+
+    # Access Control List File
+    # If manually modifying the following, accepted values are the absolute path to your ACL files ('none' if no file, separated by '--' otherwise)
+    ACL_FILE=/opt/ibm/securegateway/client/securegw_acl.txt
+
+    # Logging Level
+    # If manually modifying the following, accepted values are: INFO, DEBUG, ERROR, TRACE (default value is INFO. Separate with '--')
+    LOGLEVEL=INFO
+
+    # Client UI port
+    # If manually modifying the following, set USE_UI to N if you dont want to launch the client UI. Default value for client port is 9003.
+    USE_UI=Y
+    UI_PORT=9003
+
+    # Language
+    # Default is en; acceptable values are en, de, es, fr, it, ja, ko, pt-BR, zh, zh-TW
+    LANGUAGE=en
+
+    SECGW_ARGS="--no_license --l $LOGLEVEL --service"
+
+    #
+    # Add arguments only if set
+    #
+    if [ 'X_'$SECTOKEN != 'X_' ]; then
+        SECGW_ARGS="$SECGW_ARGS --t $SECTOKEN "
+    fi
+    if [ 'X_'$ACL_FILE != 'X_' ]; then
+        SECGW_ARGS="$SECGW_ARGS --F $ACL_FILE "
+    fi
+    if [ 'X_'$USE_UI == 'X_N' ] ; then
+        SECGW_ARGS="$SECGW_ARGS --noUI "
+    elif [ 'X_'$UI_PORT != 'X_' ]; then
+        SECGW_ARGS="$SECGW_ARGS --port $UI_PORT "
+    fi
+
+    #
+    # Export the arguments
+    #
+    export SECGW_ARGS
+
+    export OPERSYS=Ubuntu
+    export VERSION=18
