@@ -11,9 +11,11 @@
 
 ## Included components
 
-* [IBM Db2 Warehouse](https://www.ibm.com/us-en/marketplace/db2-warehouse): A
-  client-managed, private cloud data warehouse for Docker container supported
-  infrastructures.
+* [IBM Db2 Warehouse on
+  Cloud](https://www.ibm.com/cloud/db2-warehouse-on-cloud): An elastic,
+  fully-managed cloud data warehouse service that is powered by IBM BLU
+  Acceleration technology for increased performance and optimization of
+  analytics at a massive scale.
 * [IBM Watson Studio](https://www.ibm.com/cloud/watson-studio): Build and train
   AI models, and prepare and analyze data, in a single, integrated environment.
 
