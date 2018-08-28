@@ -5,9 +5,18 @@
 ## Flow
 
 1. Source data is retained in on-premise Db2 database.
-1. Data is accessible to Watson Studio via a Secure Gateway
-1. Secure gateway is utilized to train a cloud-based machine learning model
-1. Training feedback is stored in Db2 Warehouse for continuous learning
+1. Data is accessible to Watson Studio via a Secure Gateway.
+1. Secure gateway is utilized to train a cloud-based machine learning model.
+1. Training feedback is stored in Db2 Warehouse for continuous learning.
+
+## Included components
+
+- [IBM Db2 Warehouse](https://www.ibm.com/us-en/marketplace/db2-warehouse): A
+  client-managed, private cloud data warehouse for Docker container supported
+  infrastructures.
+
+- [IBM Watson Studio](https://www.ibm.com/cloud/watson-studio): Build and train
+  AI models, and prepare and analyze data, in a single, integrated environment.
 
 ## Steps
 
