@@ -96,8 +96,8 @@ named `violations`:
 
     docker exec db2 su - db2inst1 -c "db2 CONNECT TO watson; db2 'CREATE TABLE violations(ID INTEGER, VIOLATION_CODE VARCHAR(20), INSPECTOR_ID VARCHAR(15), INSPECTION_STATUS VARCHAR(10), INSPECTION_CATEGORY VARCHAR(10), DEPARTMENT_BUREAU VARCHAR(30), ADDRESS VARCHAR(250), LATITUDE DOUBLE, LONGITUDE DOUBLE)'"
 
-Then, use `docker cp` to push the `violations.csv` file (from this repository)
-into the `db2` container.
+Then, use `docker cp` to push the [`violations.csv`](violations.csv) file (from
+this repository) into the `db2` container.
 
     docker cp violations.csv db2:/home/db2inst1/
 
