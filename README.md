@@ -249,3 +249,7 @@ This column has a not null constraint. To load new data into the Feedback table-
 1. Add a column called `_TRAINING` in your dataset
 
 1. Alter the table and remove the NOT NULL constraint from the column
+
+# License
+
+[Apache 2.0](LICENSE)
