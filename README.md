@@ -21,6 +21,12 @@ TODO
 * [IBM Watson Studio](https://www.ibm.com/cloud/watson-studio): Build and train
   AI models, and prepare and analyze data, in a single, integrated environment.
 
+## Technologies
+
+* [Docker](https://www.docker.com/): Docker containers wrap up software and its
+  dependencies into a standardized unit for software development that includes
+  everything it needs to run: code, runtime, system tools and libraries.
+
 ## Steps
 
 1. [Create a Watson Studio instance](#create-a-watson-studio-instance)
@@ -45,41 +51,55 @@ of the dataset used in this pattern will not incur billing.
 
 ### Load sample data into an on-premise Db2 database
 
-For the purposes of this code pattern, we'll be using Db2 Developer-C (the
-free, community edition of Db2 for developers). However, if you already have an
-on-premise Db2 instance, feel free to substitute that instead. We'll be
-populating the database with a sample dataset of building code violations,
-provided by the city of Chicago.
+The fastest way to get started with Db2 on-premise is to use the no-charge
+community edition, running in a Docker container. However, if you already have
+an on-premise Db2 instance, feel free to substitute that instead.
 
-The fastest way to get started with Db2 Developer-C is by following this
-[how-to
-guide](https://developer.ibm.com/code/howtos/downloading-and-installing-db2-developer-c-on-ubuntu-linux/).
+We'll be populating the database with a sample dataset of building code
+violations, provided by the city of Chicago.
 
-1. Download the [CSV](https://github.com/IBMDataScience/buildings_blog/blob/master/buildings_data_17.csv).
+Start by generating a random password from `/dev/urandom`):
 
-1. Clean your data- I have separated data by `violation_date` Year
+    PASSWORD=$(< /dev/urandom tr -dc A-Za-z0-9 | head -c${1:-32};echo;)
 
-1. Create database, connect to user
+Optionally, you can reveal your password by printing it to the screen:
 
-   > Watson studio does not display admin schema objects- Log in as a non-admin user
+    echo $PASSWORD
 
-1. Connect using new user-
+Next, use Docker to run Db2 community edition in a container in the background.
+This command will accept the [license agreement](), set a password for the
+`db2inst1` user for the default Db2 instance using the password you generated
+above, and expose Db2 on port `50000` on the host:
 
-1. `Useradd newuser`
+    docker run \
+      --name db2 \
+      --env LICENSE=accept \
+      --env DB2INST1_PASSWORD=$PASSWORD \
+      --publish 50000:50000 \
+      --detach \
+      ibmcom/db2express-c \
+      db2start
 
-1. `PASSWD passw0rd`
+Next, run a `db2` command inside the running container as the `db2inst1` user
+to create a database named `watson`:
 
-1. `Grant connect,load on database to user newuser`
+    docker exec db2 su - db2inst1 -c "db2 CREATE DATABASE watson"
 
-1. Db2 connect to database user newuser
+Create a database table in the `watson` database for building code violations
+named `violations`:
 
-1. Create table:
+    docker exec db2 su - db2inst1 -c "db2 CONNECT TO watson; db2 'CREATE TABLE violations(ID INTEGER, VIOLATION_CODE VARCHAR(20), INSPECTOR_ID VARCHAR(15), INSPECTION_STATUS VARCHAR(10), INSPECTION_CATEGORY VARCHAR(10), DEPARTMENT_BUREAU VARCHAR(30), ADDRESS VARCHAR(250), LATITUDE DOUBLE, LONGITUDE DOUBLE)'"
 
-       db2 "CREATE TABLE violations_2018(ID INTEGER,VIOLATION_CODE VARCHAR(20),INSPECTOR_ID VARCHAR(15),INSPECTION_STATUS VARCHAR(10),INSPECTION_CATEGORY VARCHAR(10),DEPARTMENT_BUREAU VARCHAR(30),ADDRESS VARCHAR(250),LATITUDE DOUBLE,LONGITUDE DOUBLE)"
+Then, use `docker cp` to push the `violations.csv` file (from this repository)
+into the `db2` container.
 
-1. Load the table:
+    docker cp violations.csv db2:/home/db2inst1/
 
-       db2 "load from /home/ibm_admin/Desktop/Shruthi/violations_2018.csv of DEL replace into Violations_2018"
+Load the sample data into the `watson` database in Db2:
+
+    docker exec db2 su - db2inst1 -c "db2 connect to watson; db2 'LOAD FROM /home/db2inst1/violations.csv OF DEL REPLACE INTO violations'"
+
+At this point, you have a Db2 database instance loaded with sample data.
 
 ### Configure a secure gateway to IBM Cloud
 
