@@ -55,16 +55,6 @@ The fastest way to get started with Db2 Developer-C is by following this
 [how-to
 guide](https://developer.ibm.com/code/howtos/downloading-and-installing-db2-developer-c-on-ubuntu-linux/).
 
-As a NON-admin user:
-
-    Useradd newuser
-    PASSWD newuser
-    GRANT connect,load on WML_DB to user newuser
-
-    db2 "CREATE TABLE violations_2018(ID INTEGER,VIOLATION_CODE VARCHAR(20),INSPECTOR_ID VARCHAR(15),INSPECTION_STATUS VARCHAR(10),INSPECTION_CATEGORY VARCHAR(10),DEPARTMENT_BUREAU VARCHAR(30),ADDRESS VARCHAR(250),LATITUDE DOUBLE,LONGITUDE DOUBLE)"
-
-    db2 "load from /home/ibm_admin/Desktop/Shruthi/violations_2018.csv of DEL replace into Violations_2018"
-
 1. Download the [CSV](https://github.com/IBMDataScience/buildings_blog/blob/master/buildings_data_17.csv).
 
 1. Clean your data- I have separated data by `violation_date` Year
@@ -75,17 +65,21 @@ As a NON-admin user:
 
 1. Connect using new user-
 
-1. Useradd newuser
+1. `Useradd newuser`
 
-1. PASSWD passw0rd
+1. `PASSWD passw0rd`
 
-1. Grant connect,load on database to user newusers
+1. `Grant connect,load on database to user newuser`
 
 1. Db2 connect to database user newuser
 
-1. Create table
+1. Create table:
 
-1. Load the table
+       db2 "CREATE TABLE violations_2018(ID INTEGER,VIOLATION_CODE VARCHAR(20),INSPECTOR_ID VARCHAR(15),INSPECTION_STATUS VARCHAR(10),INSPECTION_CATEGORY VARCHAR(10),DEPARTMENT_BUREAU VARCHAR(30),ADDRESS VARCHAR(250),LATITUDE DOUBLE,LONGITUDE DOUBLE)"
+
+1. Load the table:
+
+       db2 "load from /home/ibm_admin/Desktop/Shruthi/violations_2018.csv of DEL replace into Violations_2018"
 
 ### Configure a secure gateway to IBM Cloud
 
