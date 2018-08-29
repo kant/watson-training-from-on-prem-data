@@ -68,7 +68,8 @@ Optionally, you can reveal your password by printing it to the screen:
 
 Next, use Docker to run Db2 community edition in a container in the background.
 
-> The `--env LICENSE=accept` argument indicates your acceptance of the [license
+> Including the `--env LICENSE=accept` argument indicates your acceptance of
+  the [license
   agreement](http://www-03.ibm.com/software/sla/sladb.nsf/displaylis/5DF1EE126832D3F185257DAB0064BEFA?OpenDocument)
   to use the software contained in the Docker image.
 
