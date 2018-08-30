@@ -61,7 +61,8 @@ guide](https://docs.docker.com/installation/).
 We'll be populating the database with a sample dataset of building code
 violations, provided by the city of Chicago.
 
-Start by generating a random password from `/dev/urandom`):
+Start by generating a secure, random password from `/dev/urandom`, or
+substitute one of your own choosing:
 
     PASSWORD=$(< /dev/urandom tr -dc A-Za-z0-9 | head -c${1:-32};echo;)
 
