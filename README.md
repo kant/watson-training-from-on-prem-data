@@ -55,6 +55,9 @@ The fastest way to get started with Db2 on-premise is to use the no-charge
 community edition, running in a Docker container. However, if you already have
 an on-premise Db2 instance, feel free to substitute that instead.
 
+If you don't already have Docker installed, follow the official [installation
+guide](https://docs.docker.com/installation/).
+
 We'll be populating the database with a sample dataset of building code
 violations, provided by the city of Chicago.
 
