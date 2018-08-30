@@ -119,97 +119,31 @@ At this point, you have a Db2 database instance loaded with sample data.
 
 ### Configure a secure gateway to IBM Cloud
 
-[Configure a secure gateway](https://console.bluemix.net/docs/services/SecureGateway/index.html#getting-started-with-sg)
+To enable Watson studio to access the on-premise database, you'll need to
+configure a secure gateway, which allows limited network ingress to your
+on-premise network as governed by an access control list (ACL).
 
-[console.bluemix.net/catalog/services/secure-gateway](https://console.bluemix.net/catalog/services/secure-gateway)
+Create a [Secure
+Gateway](https://console.bluemix.net/catalog/services/secure-gateway) from the
+IBM Cloud Catalog.
 
-Download the secure gateway client for your machine- (I used Ubuntu Linux)
+Once the gateway is created, select Connect Client and choose Docker as the
+connection method.
 
-#### To install the client
+The console will provide you with a complete Docker command to pull and run the
+secure gateway client, which looks something like `docker run -it
+ibmcom/secure-gateway-client $GATEWAY_ID -t $SECURITY_TOKEN`. Use the copy
+icon to copy the command, and run it locally.
 
-    dpkg -i ibm-securegateway-client-1.8.0fp6+client_amd64.deb
+[TODO: need to allow ingress to Db2, something like `acl allow
+127.0.0.1:50001`, and/or use `docker network`]
 
-Update the config file with the gateway ID and token that you see on your
-secure gateway service:
+When you're done, you can type `quit` and press <kbd>Enter</kbd> to shutdown
+the container.
 
-    vi /etc/ibm/sgenvironment.conf
-
-`sgenvironment.conf`:
-
-    #!/bin/bash
-    #
-    # Stop and Restart the client during install or upgrade (Yes or No)
-    # If manually modifying the following, accepted values are: Yes, yes, No, or no
-    RESTART_CLIENT=No
-
-    # Configuration ID to connect
-    # If manually modifying the following, accepted values are: "<your gateway ids>" separated by spaces
-
-    GATEWAY_ID=$YOUR_GATEWAY_ID
-    export SECGW_GATEWAYID="$GATEWAY_ID"
-
-    # Security Token for this Configuration ID (if any)
-    # If manually modifying the following, accepted values are: <your gateway id security tokens> ('none' if no token, separated by '--' otherwise)
-    SECTOKEN=$YOUR_GATEWAY_ID_SECURITY_TOKEN
-
-    # Access Control List File
-    # If manually modifying the following, accepted values are the absolute path to your ACL files ('none' if no file, separated by '--' otherwise)
-    ACL_FILE=/opt/ibm/securegateway/client/securegw_acl.txt
-
-    # Logging Level
-    # If manually modifying the following, accepted values are: INFO, DEBUG, ERROR, TRACE (default value is INFO. Separate with '--')
-    LOGLEVEL=INFO
-
-    # Client UI port
-    # If manually modifying the following, set USE_UI to N if you dont want to launch the client UI. Default value for client port is 9003.
-    USE_UI=Y
-    UI_PORT=9003
-
-    # Language
-    # Default is en; acceptable values are en, de, es, fr, it, ja, ko, pt-BR, zh, zh-TW
-    LANGUAGE=en
-
-    SECGW_ARGS="--no_license --l $LOGLEVEL --service"
-
-    #
-    # Add arguments only if set
-    #
-    if [ 'X_'$SECTOKEN != 'X_' ]; then
-        SECGW_ARGS="$SECGW_ARGS --t $SECTOKEN "
-    fi
-    if [ 'X_'$ACL_FILE != 'X_' ]; then
-        SECGW_ARGS="$SECGW_ARGS --F $ACL_FILE "
-    fi
-    if [ 'X_'$USE_UI == 'X_N' ] ; then
-        SECGW_ARGS="$SECGW_ARGS --noUI "
-    elif [ 'X_'$UI_PORT != 'X_' ]; then
-        SECGW_ARGS="$SECGW_ARGS --port $UI_PORT "
-    fi
-
-    #
-    # Export the arguments
-    #
-    export SECGW_ARGS
-
-    export OPERSYS=Ubuntu
-    export VERSION=18
-
-`/opt/ibm/securegateway/client/securegw_acl.txt`:
-
-    acl allow 9.236.239.165:50000
-    acl allow 127.0.1.1:50000
-
-#### Start the client
-
-    /usr/bin/sudo /bin/systemctl start securegateway_client
-
-Add the IP address to the Secure gateway's Access control list.
-
-#### Configure the Destination
-
-Use the GUI to add the IP address, Port number, choose TCP/IP , No
-authentication. If you see a Green heartbeat on your gateway, It is up and
-running!
+See the
+[documentation](https://console.bluemix.net/docs/services/SecureGateway/index.html#getting-started-with-sg)
+for additional configuration options.
 
 ### Connect to on-premise Db2 database from Watson Studio
 
