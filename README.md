@@ -64,7 +64,7 @@ violations, provided by the city of Chicago.
 Start by generating a secure, random password from `/dev/urandom`, or
 substitute one of your own choosing:
 
-    PASSWORD=$(< /dev/urandom tr -dc A-Za-z0-9 | head -c ${1:-32})
+    PASSWORD=$(< /dev/urandom tr -dc A-Za-z0-9 | head -c 32)
 
 Optionally, you can reveal your password by printing it to the screen:
 
