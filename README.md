@@ -137,8 +137,8 @@ Create a [Secure
 Gateway](https://console.bluemix.net/catalog/services/secure-gateway) from the
 IBM Cloud Catalog.
 
-Once the gateway is created, select Connect Client and choose Docker as the
-connection method.
+Once the gateway is created, select **Connect Client** and choose **Docker** as
+the connection method.
 
 The console will provide you with a complete Docker command to pull and run the
 secure gateway client, which looks something like `docker run -it
