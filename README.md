@@ -111,7 +111,7 @@ container.
 
 Load the sample data into the `watson` database in Db2:
 
-    docker exec db2 su - db2inst1 -c "db2 connect to watson; db2 'LOAD FROM /home/db2inst1/violations.csv OF DEL REPLACE INTO violations'"
+    docker exec db2 su - db2inst1 -c "db2 CONNECT TO watson; db2 'LOAD FROM /home/db2inst1/violations.csv OF DEL REPLACE INTO violations'"
 
 At this point, you have a Db2 database instance loaded with sample data.
 
