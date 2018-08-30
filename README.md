@@ -72,14 +72,16 @@ launch Db2 community edition in a container running in the background.
 This command sets a password for the `db2inst1` user to `db2inst1-pwd` for the
 default Db2 instance and exposes Db2 on port `50000` of the host:
 
-    docker run \
-      --name db2 \
-      --env LICENSE=accept \
-      --env DB2INST1_PASSWORD=db2inst1-pwd \
-      --publish 50000:50000 \
-      --detach \
-      ibmcom/db2express-c \
-      db2start
+```bash
+docker run \
+  --name db2 \
+  --env LICENSE=accept \
+  --env DB2INST1_PASSWORD=db2inst1-pwd \
+  --publish 50000:50000 \
+  --detach \
+  ibmcom/db2express-c \
+  db2start
+```
 
 Next, run a `db2` command inside the running container using [`docker
 exec`](https://docs.docker.com/engine/reference/commandline/exec/) as the
@@ -87,23 +89,31 @@ exec`](https://docs.docker.com/engine/reference/commandline/exec/) as the
 database](https://www.ibm.com/support/knowledgecenter/en/SSEPGG_10.5.0/com.ibm.db2.luw.admin.dbobj.doc/doc/t0004916.html)
 named `watson`:
 
-    docker exec db2 su - db2inst1 -c "db2 CREATE DATABASE watson"
+```bash
+docker exec db2 su - db2inst1 -c "db2 CREATE DATABASE watson"
+```
 
 Create a database table in the `watson` database for building code violations
 named `violations`:
 
-    docker exec db2 su - db2inst1 -c "db2 CONNECT TO watson; db2 'CREATE TABLE violations(ID INTEGER, VIOLATION_CODE VARCHAR(20), INSPECTOR_ID VARCHAR(15), INSPECTION_STATUS VARCHAR(10), INSPECTION_CATEGORY VARCHAR(10), DEPARTMENT_BUREAU VARCHAR(30), ADDRESS VARCHAR(250), LATITUDE DOUBLE, LONGITUDE DOUBLE)'"
+```bash
+docker exec db2 su - db2inst1 -c "db2 CONNECT TO watson; db2 'CREATE TABLE violations(ID INTEGER, VIOLATION_CODE VARCHAR(20), INSPECTOR_ID VARCHAR(15), INSPECTION_STATUS VARCHAR(10), INSPECTION_CATEGORY VARCHAR(10), DEPARTMENT_BUREAU VARCHAR(30), ADDRESS VARCHAR(250), LATITUDE DOUBLE, LONGITUDE DOUBLE)'"
+```
 
 Then, use [`docker
 cp`](https://docs.docker.com/engine/reference/commandline/cp/) to push the
 [`violations.csv`](violations.csv) file (from this repository) into the `db2`
 container.
 
-    docker cp violations.csv db2:/home/db2inst1/
+```bash
+docker cp violations.csv db2:/home/db2inst1/
+```
 
 Load the sample data into the `watson` database in Db2:
 
-    docker exec db2 su - db2inst1 -c "db2 CONNECT TO watson; db2 'LOAD FROM /home/db2inst1/violations.csv OF DEL REPLACE INTO violations'"
+```bash
+docker exec db2 su - db2inst1 -c "db2 CONNECT TO watson; db2 'LOAD FROM /home/db2inst1/violations.csv OF DEL REPLACE INTO violations'"
+```
 
 At this point, you have a Db2 database instance loaded with sample data.
 
