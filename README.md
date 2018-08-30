@@ -113,6 +113,13 @@ To enable Watson studio to access the on-premise database, you'll need to
 configure a secure gateway, which allows limited network ingress to your
 on-premise network as governed by an access control list (ACL).
 
+Before you begin, you need to take note of your computer's LAN IP. You can find
+that address using:
+
+```bash
+    hostname -I
+```
+
 Create a [Secure
 Gateway](https://console.bluemix.net/catalog/services/secure-gateway) from the
 IBM Cloud Catalog.
@@ -150,8 +157,8 @@ Configure the connection as follows:
 
 * Name `On-Premise`.
 * Database: `watson`.
-* Hostname or IP Address: `127.0.0.1`
-* Port: `50001`.
+* Hostname or IP Address: your workstation's LAN IP (`$ hostname -I`)
+* Port: `50000`.
 * Secure Gateway: checked (and ensure your Secure Gateway is selected in the
   dropdown)
 * Username: `db2inst1`.
