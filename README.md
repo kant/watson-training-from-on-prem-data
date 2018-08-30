@@ -130,6 +130,9 @@ find that address using:
 hostname -I
 ```
 
+For the purposes of this code pattern, we'll assume that your LAN IP is
+`192.168.1.100`.
+
 Create a [Secure
 Gateway](https://console.bluemix.net/catalog/services/secure-gateway) from the
 IBM Cloud Catalog.
