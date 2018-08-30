@@ -127,8 +127,12 @@ Before you begin, you need to take note of your workstation's LAN IP. You can
 find that address using:
 
 ```bash
-hostname -I
+$ hostname -I
+192.168.1.100
 ```
+
+> Your workstation may have more than one IP, but any of them will likely work
+  for the purposes of this code pattern.
 
 For the purposes of this code pattern, we'll assume that your LAN IP is
 `192.168.1.100`.
@@ -149,7 +153,8 @@ to copy the command, and run it locally.
 By default, the gateway starts in a default-deny state, meaning that all
 incoming connections will be blocked to all network resources. To allow Watson
 Studio to access your Db2 instance, we need to specifically allow access to the
-port published by Docker. Use your workstation's IP address:
+port published by Docker on your workstation's LAN IP address (e.g.
+`192.168.1.100`):
 
     acl allow 192.168.1.100:50000
 
