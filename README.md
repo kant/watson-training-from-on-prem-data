@@ -146,12 +146,12 @@ for additional configuration options.
 
 Create a New Project.
 
-Select `Complete`, when prompted.
+Select **Complete**, when prompted.
 
-Enter a project name, and click Create.
+Enter a project name, and click **Create**.
 
-Near the top right of the screen, select the `Add to project` dropdown, choose
-`Connection`, and select `Db2` from the available options.
+Near the top right of the screen, select the **Add to project** dropdown, choose
+**Connection**, and select **Db2** from the available options.
 
 Configure the connection as follows:
 
