@@ -151,8 +151,8 @@ IBM Cloud Catalog.
 Once the gateway is created, select **Connect Client** and choose **Docker** as
 the connection method.
 
-The console will provide you with a complete Docker command to pull and run the
-secure gateway client, which looks something like `docker run -it
+The console will provide you with a complete Docker command to download and run
+the secure gateway client, which looks something like `docker run -it
 ibmcom/secure-gateway-client $GATEWAY_ID -t $SECURITY_TOKEN` (with a real
 gateway ID and security token unique to your Secure Gateway). Use the copy icon
 to copy the command, and run it locally.
