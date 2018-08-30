@@ -159,8 +159,8 @@ Configure the connection as follows:
 * Database: `watson`.
 * Hostname or IP Address: your workstation's LAN IP (`$ hostname -I`)
 * Port: `50000`.
-* Secure Gateway: checked (and ensure your Secure Gateway is selected in the
-  dropdown)
+* Secure Gateway: &#9745; (and ensure your new Secure Gateway is selected in
+  the corresponding dropdown menu)
 * Username: `db2inst1`.
 * Password `db2inst1-pwd`.
 
