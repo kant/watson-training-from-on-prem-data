@@ -132,7 +132,13 @@ $ hostname -I
 ```
 
 > Your workstation may have more than one IP, but any of them will likely work
-  for the purposes of this code pattern.
+  for the purposes of this code pattern, because Docker will bind to all
+  network interfaces.
+
+> It's worth mentioning that `loopback` addresses (e.g. `127.0.0.1`) will not
+  work here, because IBM Cloud services consuming the secure gateway cannot
+  distinguish between their own `loopback` interfaces and one on the other end
+  of a secure gateway.
 
 For the purposes of this code pattern, we'll assume that your LAN IP is
 `192.168.1.100`.
