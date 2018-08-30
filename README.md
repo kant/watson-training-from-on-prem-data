@@ -157,11 +157,11 @@ ibmcom/secure-gateway-client $GATEWAY_ID -t $SECURITY_TOKEN` (with a real
 gateway ID and security token unique to your Secure Gateway). Use the copy icon
 to copy the command, and run it locally.
 
-By default, the gateway starts in a default-deny state, meaning that all
-incoming connections will be blocked to all network resources. To allow Watson
-Studio to access your Db2 instance, we need to specifically allow access to the
-port published by Docker on your workstation's LAN IP address (e.g.
-`192.168.1.100`):
+By default, the gateway starts with an access control list in a default-deny
+state, meaning that all incoming connections through the secure gateway will be
+blocked from accessing any network resources. To allow Watson Studio to access
+your Db2 instance, we need to specifically allow access to the port published
+by Docker on your workstation's LAN IP address (e.g. `192.168.1.100`):
 
     acl allow 192.168.1.100:50000
 
