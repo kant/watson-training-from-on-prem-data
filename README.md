@@ -113,8 +113,8 @@ To enable Watson studio to access the on-premise database, you'll need to
 configure a secure gateway, which allows limited network ingress to your
 on-premise network as governed by an access control list (ACL).
 
-Before you begin, you need to take note of your computer's LAN IP. You can find
-that address using:
+Before you begin, you need to take note of your workstation's LAN IP. You can
+find that address using:
 
 ```bash
     hostname -I
@@ -132,11 +132,18 @@ secure gateway client, which looks something like `docker run -it
 ibmcom/secure-gateway-client $GATEWAY_ID -t $SECURITY_TOKEN`. Use the copy
 icon to copy the command, and run it locally.
 
-[TODO: need to allow ingress to Db2, something like `acl allow
-127.0.0.1:50001`, and/or use `docker network`]
+By default, the gateway starts in a default-deny state, meaning that all
+incoming connections will be blocked to all network resources. To allow Watson
+Studio to access your Db2 instance, we need to specifically allow access to the
+port published by Docker. Use your workstation's IP address:
 
-When you're done, you can type `quit` and press <kbd>Enter</kbd> to shutdown
-the container.
+    acl allow 192.168.1.100:50000
+
+Incoming connections from Watson Studio which pass through the secure gateway
+will now be able to access Db2.
+
+> When you're finished with this code pattern, you can close the secure gateway
+  by typing `quit` at the prompt and pressing <kbd>Enter</kbd>.
 
 See the
 [documentation](https://console.bluemix.net/docs/services/SecureGateway/index.html#getting-started-with-sg)
