@@ -147,10 +147,25 @@ for additional configuration options.
 
 ### Connect to on-premise Db2 database from Watson Studio
 
-Add to Project-> Connection-> IBM Db2
+Create a New Project.
 
-Enter the hostname, port, Db name, user name, password, select the secure
-gateway
+Select `Complete`, when prompted.
+
+Enter a project name, and click Create.
+
+Near the top right of the screen, select the `Add to project` dropdown, choose
+`Connection`, and select `Db2` from the available options.
+
+Configure the connection as follows:
+
+* Name `On-Premise`.
+* Database: `violations`.
+* Hostname or IP Address: `127.0.0.1`
+* Port: `50001`.
+* Secure Gateway: checked (and ensure your Secure Gateway is selected in the
+  dropdown)
+* Username: `db2inst1`.
+* Password `db2inst1-pwd`.
 
 Add to Project-> Connected asset-> select the table from the DB
 
