@@ -89,8 +89,11 @@ instance using the password you generated above, and exposes Db2 on port
       ibmcom/db2express-c \
       db2start
 
-Next, run a `db2` command inside the running container as the `db2inst1` user
-to create a database named `watson`:
+Next, run a `db2` command inside the running container using [`docker
+exec`](https://docs.docker.com/engine/reference/commandline/exec/) as the
+`db2inst1` user to [create a
+database](https://www.ibm.com/support/knowledgecenter/en/SSEPGG_10.5.0/com.ibm.db2.luw.admin.dbobj.doc/doc/t0004916.html)
+named `watson`:
 
     docker exec db2 su - db2inst1 -c "db2 CREATE DATABASE watson"
 
@@ -99,8 +102,10 @@ named `violations`:
 
     docker exec db2 su - db2inst1 -c "db2 CONNECT TO watson; db2 'CREATE TABLE violations(ID INTEGER, VIOLATION_CODE VARCHAR(20), INSPECTOR_ID VARCHAR(15), INSPECTION_STATUS VARCHAR(10), INSPECTION_CATEGORY VARCHAR(10), DEPARTMENT_BUREAU VARCHAR(30), ADDRESS VARCHAR(250), LATITUDE DOUBLE, LONGITUDE DOUBLE)'"
 
-Then, use `docker cp` to push the [`violations.csv`](violations.csv) file (from
-this repository) into the `db2` container.
+Then, use [`docker
+cp`](https://docs.docker.com/engine/reference/commandline/cp/) to push the
+[`violations.csv`](violations.csv) file (from this repository) into the `db2`
+container.
 
     docker cp violations.csv db2:/home/db2inst1/
 
