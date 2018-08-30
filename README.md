@@ -70,7 +70,8 @@ Optionally, you can reveal your password by printing it to the screen:
 
     echo Password: $PASSWORD
 
-Next, use Docker to run Db2 community edition in a container in the background.
+Next, use [`docker run`](https://docs.docker.com/engine/reference/run/) to
+launch Db2 community edition in a container running in the background.
 
 > Including the `--env LICENSE=accept` argument indicates your acceptance of
   the [license
