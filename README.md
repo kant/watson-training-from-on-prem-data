@@ -177,7 +177,7 @@ Configure the connection as follows:
 
 * **Name**: `On-Premise`.
 * **Database**: `watson`.
-* **Hostname or IP Address**: your workstation's LAN IP (`$ hostname -I`)
+* **Hostname or IP Address**: your workstation's LAN IP (e.g. `192.168.1.100`)
 * **Port**: `50000`.
 * **Secure Gateway**: &#9745; (and ensure your new Secure Gateway is selected in
   the corresponding dropdown menu)
