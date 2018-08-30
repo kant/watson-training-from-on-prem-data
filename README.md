@@ -55,22 +55,13 @@ The fastest way to get started with Db2 on-premise is to use the no-charge
 community edition, running in a Docker container. However, if you already have
 an on-premise Db2 instance, feel free to substitute that instead.
 
-If you don't already have Docker installed, follow the official [installation
-guide](https://docs.docker.com/installation/).
-
 We'll be populating the database with a sample dataset of building code
 violations, provided by the city of Chicago.
 
-Start by generating a secure, random password from `/dev/urandom`, or
-substitute one of your own choosing:
+If you don't already have Docker installed, follow the official [installation
+guide](https://docs.docker.com/installation/).
 
-    PASSWORD=$(< /dev/urandom tr -dc A-Za-z0-9 | head -c 32)
-
-Optionally, you can reveal your password by printing it to the screen:
-
-    echo Password: $PASSWORD
-
-Next, use [`docker run`](https://docs.docker.com/engine/reference/run/) to
+Start by using [`docker run`](https://docs.docker.com/engine/reference/run/) to
 launch Db2 community edition in a container running in the background.
 
 > Including the `--env LICENSE=accept` argument indicates your acceptance of
@@ -78,14 +69,13 @@ launch Db2 community edition in a container running in the background.
   agreement](http://www-03.ibm.com/software/sla/sladb.nsf/displaylis/5DF1EE126832D3F185257DAB0064BEFA?OpenDocument)
   to use the software contained in the Docker image.
 
-The command also sets a password for the `db2inst1` user for the default Db2
-instance using the password you generated above, and exposes Db2 on port
-`50000` of the host:
+This command sets a password for the `db2inst1` user to `db2inst1-pwd` for the
+default Db2 instance and exposes Db2 on port `50000` of the host:
 
     docker run \
       --name db2 \
       --env LICENSE=accept \
-      --env DB2INST1_PASSWORD=$PASSWORD \
+      --env DB2INST1_PASSWORD=db2inst1-pwd \
       --publish 50000:50000 \
       --detach \
       ibmcom/db2express-c \
