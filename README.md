@@ -144,7 +144,7 @@ for additional configuration options.
 
 ### Connect to on-premise Db2 database from Watson Studio
 
-Create a New Project.
+Create a **New Project**.
 
 Select **Complete**, when prompted.
 
