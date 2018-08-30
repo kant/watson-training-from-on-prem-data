@@ -149,7 +149,7 @@ Near the top right of the screen, select the `Add to project` dropdown, choose
 Configure the connection as follows:
 
 * Name `On-Premise`.
-* Database: `violations`.
+* Database: `watson`.
 * Hostname or IP Address: `127.0.0.1`
 * Port: `50001`.
 * Secure Gateway: checked (and ensure your Secure Gateway is selected in the
