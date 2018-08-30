@@ -70,7 +70,8 @@ launch Db2 community edition in a container running in the background.
   to use the software contained in the Docker image.
 
 This command sets a password for the `db2inst1` user to `db2inst1-pwd` for the
-default Db2 instance and exposes Db2 on port `50000` of the host:
+default Db2 instance and binds Db2 to listen on port `50000` of your
+workstation:
 
 ```bash
 docker run \
