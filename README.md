@@ -142,8 +142,9 @@ the connection method.
 
 The console will provide you with a complete Docker command to pull and run the
 secure gateway client, which looks something like `docker run -it
-ibmcom/secure-gateway-client $GATEWAY_ID -t $SECURITY_TOKEN`. Use the copy
-icon to copy the command, and run it locally.
+ibmcom/secure-gateway-client $GATEWAY_ID -t $SECURITY_TOKEN` (with a real
+gateway ID and security token unique to your Secure Gateway). Use the copy icon
+to copy the command, and run it locally.
 
 By default, the gateway starts in a default-deny state, meaning that all
 incoming connections will be blocked to all network resources. To allow Watson
