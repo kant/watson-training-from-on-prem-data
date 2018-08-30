@@ -117,7 +117,7 @@ Before you begin, you need to take note of your workstation's LAN IP. You can
 find that address using:
 
 ```bash
-    hostname -I
+hostname -I
 ```
 
 Create a [Secure
