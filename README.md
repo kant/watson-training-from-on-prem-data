@@ -197,7 +197,16 @@ Configure the connection as follows:
 * **Username**: `db2inst1`
 * **Password**: `db2inst1-pwd`
 
-Add to Project-> Connected asset-> select the table from the DB
+In the secure gateway terminal, you should see a log message indicating that a
+connection was successfully established from Watson Studio:
+
+    [2018-08-31 10:38:38.708] [INFO] (Client ID K75lSQ0Oppd_d87) Connection #1 is being established to 192.168.1.100:50000
+
+Click the **Add to Project** dropdown again, and choose **Connected assets**.
+
+Click **Select source**, and choose the **On-Premise** connection.
+
+select the table from the DB
 
 > Watson Machine Learning models do not support Data assets from Db2 on-prem,
 > so we now have to convert the Data asset into a csv
