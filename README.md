@@ -69,9 +69,8 @@ launch Db2 community edition in a container running in the background.
   agreement](http://www-03.ibm.com/software/sla/sladb.nsf/displaylis/5DF1EE126832D3F185257DAB0064BEFA?OpenDocument)
   to use the software contained in the Docker image.
 
-This command sets a password for the `db2inst1` user to `db2inst1-pwd` for the
-default Db2 instance and binds Db2 to listen on port `50000` of your
-workstation:
+This command sets a password for the default instance user (`db2inst1`) to
+`db2inst1-pwd` and binds Db2 to listen on port `50000` of your workstation:
 
 ```bash
 docker run \
@@ -88,17 +87,34 @@ Next, run a `db2` command inside the running container using [`docker
 exec`](https://docs.docker.com/engine/reference/commandline/exec/) as the
 `db2inst1` user to [create a
 database](https://www.ibm.com/support/knowledgecenter/en/SSEPGG_10.5.0/com.ibm.db2.luw.admin.dbobj.doc/doc/t0004916.html)
-named `watson`:
+named `onprem`:
 
 ```bash
-docker exec db2 su - db2inst1 -c "db2 CREATE DATABASE watson"
+docker exec db2 su - db2inst1 -c "db2 CREATE DATABASE onprem"
 ```
 
-Create a database table in the `watson` database for building code violations
-named `violations`:
+Next, we need to create a regular user for Watson Studio to connect as. Users
+in Db2 are managed externally from Db2 itself, so let's create a system user
+named `watson`, assign them a password (`secrete`), and grant them
+database-level permissions.
 
 ```bash
-docker exec db2 su - db2inst1 -c "db2 CONNECT TO watson; db2 'CREATE TABLE violations(ID INTEGER, VIOLATION_CODE VARCHAR(20), INSPECTOR_ID VARCHAR(15), INSPECTION_STATUS VARCHAR(10), INSPECTION_CATEGORY VARCHAR(10), DEPARTMENT_BUREAU VARCHAR(30), ADDRESS VARCHAR(250), LATITUDE DOUBLE, LONGITUDE DOUBLE)'"
+docker exec db2 useradd -g db2iadm1 watson
+```
+
+```bash
+docker exec -it db2 bash -c "echo secrete | passwd --stdin watson"
+```
+
+```bash
+docker exec db2 su - db2inst1 -c "db2 CONNECT TO onprem; db2 'GRANT DBADM, CREATETAB, BINDADD, CONNECT, CREATE_NOT_FENCED, IMPLICIT_SCHEMA, LOAD ON DATABASE TO watson'"
+```
+
+Using the new `watson` user account, create a database table in the `watson`
+database for building code violations named `violations`:
+
+```bash
+docker exec db2 su - db2inst1 -c "db2 CONNECT TO onprem USER watson USING secrete; db2 'CREATE TABLE violations(ID INTEGER, VIOLATION_CODE VARCHAR(20), INSPECTOR_ID VARCHAR(15), INSPECTION_STATUS VARCHAR(10), INSPECTION_CATEGORY VARCHAR(10), DEPARTMENT_BUREAU VARCHAR(30), ADDRESS VARCHAR(250), LATITUDE DOUBLE, LONGITUDE DOUBLE)'"
 ```
 
 Then, use [`docker
@@ -110,10 +126,10 @@ container.
 docker cp violations.csv db2:/tmp/
 ```
 
-Load the sample data into the `watson` database in Db2:
+Load the sample data into the `onprem` database in Db2:
 
 ```bash
-docker exec db2 su - db2inst1 -c "db2 CONNECT TO watson; db2 'LOAD FROM /tmp/violations.csv OF DEL REPLACE INTO violations'"
+docker exec db2 su - db2inst1 -c "db2 CONNECT TO onprem USER watson USING secrete; db2 'LOAD FROM /tmp/violations.csv OF DEL REPLACE INTO violations'"
 ```
 
 At this point, you have a Db2 database instance loaded with sample data.
@@ -189,13 +205,13 @@ Near the top right of the screen, select the **Add to project** dropdown, choose
 Configure the connection as follows:
 
 * **Name**: `On-Premise`
-* **Database**: `watson`
+* **Database**: `onprem`
 * **Hostname or IP Address**: your workstation's LAN IP (e.g. `192.168.1.100`)
 * **Port**: `50000`
 * **Secure Gateway**: &#9745; (and ensure your new Secure Gateway is selected in
   the corresponding dropdown menu)
-* **Username**: `db2inst1`
-* **Password**: `db2inst1-pwd`
+* **Username**: `watson`
+* **Password**: `secrete`
 
 In the secure gateway terminal, you should see a log message indicating that a
 connection was successfully established from Watson Studio:
