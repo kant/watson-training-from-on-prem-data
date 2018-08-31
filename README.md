@@ -137,9 +137,9 @@ $ hostname -I
   network interfaces.
 
 > It's worth mentioning that `loopback` addresses (e.g. `127.0.0.1`) will not
-  work here, because IBM Cloud services consuming the secure gateway cannot
-  distinguish between their own `loopback` interfaces and one on the other end
-  of a secure gateway.
+  work here, because IBM Cloud services consuming the Secure Gateway will not
+  be able to distinguish between their own `loopback` interfaces and a
+  `loopback` interface` on your end of the Secure Gateway.
 
 For the purposes of this code pattern, we'll assume that your LAN IP is
 `192.168.1.100`.
