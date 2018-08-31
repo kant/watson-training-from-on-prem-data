@@ -188,14 +188,14 @@ Near the top right of the screen, select the **Add to project** dropdown, choose
 
 Configure the connection as follows:
 
-* **Name**: `On-Premise`.
-* **Database**: `watson`.
+* **Name**: `On-Premise`
+* **Database**: `watson`
 * **Hostname or IP Address**: your workstation's LAN IP (e.g. `192.168.1.100`)
-* **Port**: `50000`.
+* **Port**: `50000`
 * **Secure Gateway**: &#9745; (and ensure your new Secure Gateway is selected in
   the corresponding dropdown menu)
-* **Username**: `db2inst1`.
-* **Password**: `db2inst1-pwd`.
+* **Username**: `db2inst1`
+* **Password**: `db2inst1-pwd`
 
 Add to Project-> Connected asset-> select the table from the DB
 
