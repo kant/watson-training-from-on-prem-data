@@ -221,7 +221,7 @@ connection was successfully established from Watson Studio:
 Click the **Add to Project** dropdown again, and choose **Connected assets**.
 
 Click **Select source**, then choose the **On-Premise** connection, then the
-`WATSON` database, then the `VIOLATIONS` table, and finally, click the
+**WATSON** database, then the **VIOLATIONS** table, and finally, click the
 **Select** button at the bottom of the screen.
 
 > Watson Machine Learning models do not support Data assets from Db2 on-prem,
