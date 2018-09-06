@@ -253,7 +253,7 @@ Click **Select source**, then choose the **On-Premise** connection, then the
 From the **Data assets** table, click on **Violations** (with **Data Asset** in
 the **Type** column). At the top right, click **Refine**. We don't need to
 manipulate the data in anyway, so just click the "run" button labeled
-**&#9579;** at the top right. The data flow output will show that you're
+**&#9654;** at the top right. The data flow output will show that you're
 creating a CSV file, which will be saved into your object storage bucket. Click
 **Save and Run**. You can then opt to view the data flow's progress by clicking
 **View Flow**.
