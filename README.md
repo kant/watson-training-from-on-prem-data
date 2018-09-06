@@ -40,10 +40,10 @@ TODO
 
 In order to build and train your machine learning model, you'll need to [sign
 up for Watson Studio](https://www.ibm.com/cloud/watson-studio), which you can
-do for free. In our use case, Watson Studio will rely on the **Object Storage**
-service to store it's data, the **Apache Spark** service for data processing,
-and the **Machine Learning** service for building machine learning models.
-Finally, we'll use a **DB2 Warehouse** to enable continuous learning.
+do for free. In our use case, Watson Studio will rely on the Object Storage
+service to store it's data, the Apache Spark service for data processing,
+and the Machine Learning service for building machine learning models.
+Finally, we'll use a DB2 Warehouse to enable continuous learning.
 
 From the [IBM Cloud Catalog](https://console.bluemix.net/catalog/), select the
 [**Storage**](https://console.bluemix.net/catalog/?category=storage) category,
