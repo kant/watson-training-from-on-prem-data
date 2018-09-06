@@ -43,6 +43,8 @@ In order to build and train your machine learning model, you'll need to [sign
 up for Watson Studio](https://www.ibm.com/cloud/watson-studio), which you can
 do for free.
 
+[TODO: Need to create a service instance through the catalog]
+
 ### Create a Db2 Warehouse on IBM Cloud
 
 Next, you'll need to [create a Db2 Warehouse
@@ -237,9 +239,17 @@ It is now saved as a csv
 
 #### Create a WML model
 
-Associate a ML service-
+Browse to the IBM Cloud Catalog, and create a Cloud Object Storage service
+instance.
 
-Associate an IBM analytics service- (Spark)
+Browse to the IBM Cloud Catalog, and create a Machine Learning service
+instance.
+
+Browse to the IBM Cloud Catalog, and create a Spark service instance.
+
+In Watson Studio, navigate to your project, go to the **Settings** tab, and
+scroll down to **Associated services**. Click **Add service** and select
+**Spark**. Select your existing Spark instance or create a new instance.
 
 Select the Type of classification, data asset, Input and output features,
    estimators and the final model.
