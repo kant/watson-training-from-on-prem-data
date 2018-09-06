@@ -29,27 +29,46 @@ TODO
 
 ## Steps
 
-1. [Create a Watson Studio instance](#create-a-watson-studio-instance)
-1. [Create a Db2 Warehouse on IBM Cloud](#create-a-db2-warehouse-on-ibm-cloud)
+1. [Create IBM Cloud service instances](#create-ibm-cloud-service-instances)
 1. [Load sample data into an on-premise Db2 database](#load-sample-data-into-an-on-premise-db2-database)
 1. [Configure a secure gateway to IBM Cloud](#configure-a-secure-gateway-to-ibm-cloud)
 1. [Connect to on-premise Db2 database from Watson Studio](#connect-to-on-premise-db2-database-from-watson-studio)
 1. [Create a machine learning model](#create-a-machine-learning-model)
 1. [Enable continuous learning](#enable-continuous-learning)
 
-### Create a Watson Studio instance
+### Create IBM Cloud service instances
 
 In order to build and train your machine learning model, you'll need to [sign
 up for Watson Studio](https://www.ibm.com/cloud/watson-studio), which you can
-do for free.
+do for free. In our use case, Watson Studio will rely on the **Object Storage**
+service to store it's data, the **Apache Spark** service for data processing,
+and the **Machine Learning** service for building machine learning models.
+Finally, we'll use a **DB2 Warehouse** to enable continuous learning.
 
-[TODO: Need to create a service instance through the catalog]
+From the [IBM Cloud Catalog](https://console.bluemix.net/catalog/), select the
+[**Storage**](https://console.bluemix.net/catalog/?category=storage) category,
+and then the [**Object
+Storage**](https://console.bluemix.net/catalog/services/cloud-object-storage)
+service. Then, click **Create**.
 
-### Create a Db2 Warehouse on IBM Cloud
+From the [IBM Cloud Catalog](https://console.bluemix.net/catalog/), select the
+[**Web and
+Application**](https://console.bluemix.net/catalog/?category=app_services)
+category, and then the [**Apache
+Spark**](https://console.bluemix.net/catalog/services/apache-spark) service.
+Then, click **Create**.
 
-Next, you'll need to [create a Db2 Warehouse
-instance](https://console.bluemix.net/catalog/services/db2-warehouse). The size
-of the dataset used in this pattern will not incur billing.
+From the [IBM Cloud Catalog](https://console.bluemix.net/catalog/), select the
+[**AI**](https://console.bluemix.net/catalog/?category=ai) category, and then
+the [**Watson
+Studio**](https://console.bluemix.net/catalog/services/watson-studio) service.
+Then, click **Create**.
+
+From the [IBM Cloud Catalog](https://console.bluemix.net/catalog/), select the
+[**Databases**](https://console.bluemix.net/catalog/?category=databases)
+category, and then the [**Db2
+Warehouse**](https://console.bluemix.net/catalog/services/db2-warehouse)
+service. Then, click **Create**.
 
 ### Load sample data into an on-premise Db2 database
 
@@ -231,28 +250,36 @@ Click **Select source**, then choose the **On-Premise** connection, then the
 
 #### Refine the asset
 
-Data Assets-> Refine-> Add operation-> run
+From the **Data assets** table, click on **Violations** (with **Data Asset** in
+the **Type** column). At the top right, click **Refine**. We don't need to
+manipulate the data in anyway, so just click the "run" button labeled
+**&u256b;** at the top right. The data flow output will show that you're
+creating a CSV file, which will be saved into your object storage bucket. Click
+**Save and Run**. You can then opt to view the data flow's progress by clicking
+**View Flow**.
 
-It is now saved as a csv
+From your project **Assets** screen, you should now see a new **Data asset**
+named `Violations_shaped.csv`.
 
 ### Create a machine learning model
 
 #### Create a WML model
 
-Browse to the IBM Cloud Catalog, and create a Cloud Object Storage service
-instance.
+From your project's **Assets** screen, click **New Watson Machine Learning
+model**. Name your model **Violations Predictor**, select your Apache Spark
+service instance from the **Spark Service or Environment** dropdown, and click
+**Create**.
 
-Browse to the IBM Cloud Catalog, and create a Machine Learning service
-instance.
+You'll then be asked to choose your data asset. Use the radio button to select
+the CSV file you just created, named `Violations_shaped.csv`, and click
+**Next**.
 
-Browse to the IBM Cloud Catalog, and create a Spark service instance.
+When the data is finished loading, you'll be asked to **Select a technique**.
+Choose `INSPECTION_STATUS (String)` as your **Column value to predict (Label
+Col)**, and choose **Multiclass Classification** as your technique. Click
+**Train**.
 
-In Watson Studio, navigate to your project, go to the **Settings** tab, and
-scroll down to **Associated services**. Click **Add service** and select
-**Spark**. Select your existing Spark instance or create a new instance.
-
-Select the Type of classification, data asset, Input and output features,
-   estimators and the final model.
+When training is complete, click **Save**.
 
 #### Deploy the model
 
