@@ -245,18 +245,19 @@ Click **Select source**, then choose the **On-Premise** connection, then the
 **WATSON** database, then the **VIOLATIONS** table, and finally, click the
 **Select** button at the bottom of the screen.
 
-> Watson Machine Learning models do not support Data assets from Db2 on-prem,
-> so we now have to convert the Data asset into a csv
-
 #### Refine the asset
+
+Watson Machine Learning models do not directly support data assets from
+on-premise Db2 instances, so we have to setup a conversion process to "refine"
+the data asset into a `CSV` file in object storage.
 
 From the **Data assets** table, click on **Violations** (with **Data Asset** in
 the **Type** column). At the top right, click **Refine**. We don't need to
-manipulate the data in anyway, so just click the "run" button labeled with a
+manipulate the data, so simply click the "run" button labeled with a
 **&#9654;** icon at the top right. The data flow output will show that you're
-creating a CSV file, which will be saved into your object storage bucket. Click
-**Save and Run**. You can then opt to view the data flow's progress by clicking
-**View Flow**.
+creating a `CSV` file, which will be saved into your object storage bucket.
+Click **Save and Run**. You can then opt to view the data flow's progress by
+clicking **View Flow**.
 
 From your project **Assets** screen, you should now see a new **Data asset**
 named `Violations_shaped.csv`.
@@ -279,7 +280,7 @@ Choose `INSPECTION_STATUS (String)` as your **Column value to predict (Label
 Col)**, and choose **Multiclass Classification** as your technique. Click
 **Train**.
 
-When training is complete, click **Save**.
+When training is complete, click **Save** to store your model.
 
 #### Deploy the model
 
