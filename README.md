@@ -288,9 +288,12 @@ time, without having to update the application.
 
 ### Enable continuous learning
 
-Next, we need to create a feedback table for use by your model in Db2 Warehouse
-on Cloud. From the IBM Cloud dashboard, navigate to your Db2 Warehouse
-instance, and click **Open**. Use the hamburger menu in the top left, and click
+In order to enable continuous learning, we need to create a feedback loop to
+the machine learning model. To accomplish that, we need to create a feedback
+table in Db2 Warehouse on Cloud.
+
+From the IBM Cloud dashboard, navigate to your Db2 Warehouse instance, and
+click **Open**. Use the hamburger menu **&#9776;** in the top left, and click
 **Run SQL**. Run the following two statements to create a feedback table, and a
 trigger to populate a new column.
 
@@ -317,12 +320,11 @@ trigger to populate a new column.
 
 #### Performance Monitoring
 
-To enable continuous learning, we need to create a trigger for re-training.
+Next, we need to create a trigger for re-training.
 
 From your project's **Assets** tab in Watson Studio, Click your machine
 learning model ("Violation Predictor"), click the **Evaluation** tab, and click
 **Configure Performance Monitoring**.
-> Watson Studio only supports Db2 Watson on Cloud tables as Feedback tables
 
 Select the feedback metric, the feedback table, Trigger event (Eg: after 50
 rows are added to the table)
