@@ -347,12 +347,12 @@ When the Trigger event occurs, It will pull in new data from the Feedback table
 and re-train your model. If the new model performs better, this will be
 deployed.
 
-> After Watson Studio uses the Feedback table, it writes a column `_TRAINING`
+> After Watson Studio uses the Feedback table, it writes a column `TRAINED`
 > into the Feedback table, with Timestamp.
 
 This column has a not null constraint. To load new data into the Feedback table-
 
-1. Add a column called `_TRAINING` in your dataset
+1. Add a column called `TRAINED` in your dataset
 
 1. Alter the table and remove the NOT NULL constraint from the column
 
