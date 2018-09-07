@@ -282,20 +282,11 @@ Col)**, and choose **Multiclass Classification** as your technique. Click
 
 When training is complete, click **Save** to store your model.
 
-#### Deploy the model
-
-Use these endpoints in your notebook on new data.
+You can now use the model's endpoint in your own application. However, if you
+also enable continuous learning, then your application will become smarter over
+time, without having to update the application.
 
 ### Enable continuous learning
-
-To enable continuous learning, we need to create a trigger for re-training.
-
-From your project's **Assets** tab in Watson Studio, Click your machine
-learning model ("Violation Predictor"), click the **Evaluation** tab, and click
-**Configure Performance Monitoring**.
-> Watson Studio only supports Db2 Watson on Cloud tables as Feedback tables
-
-#### On Db2 Warehouse on Cloud
 
 Next, we need to create a feedback table for use by your model in Db2 Warehouse
 on Cloud. From the IBM Cloud dashboard, navigate to your Db2 Warehouse
@@ -325,6 +316,13 @@ trigger to populate a new column.
       FOR EACH ROW SET n.TRAINED=CURRENT_TIMESTAMP;
 
 #### Performance Monitoring
+
+To enable continuous learning, we need to create a trigger for re-training.
+
+From your project's **Assets** tab in Watson Studio, Click your machine
+learning model ("Violation Predictor"), click the **Evaluation** tab, and click
+**Configure Performance Monitoring**.
+> Watson Studio only supports Db2 Watson on Cloud tables as Feedback tables
 
 Select the feedback metric, the feedback table, Trigger event (Eg: after 50
 rows are added to the table)
