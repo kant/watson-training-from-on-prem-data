@@ -295,7 +295,7 @@ table in Db2 Warehouse on Cloud.
 From the IBM Cloud dashboard, navigate to your Db2 Warehouse instance, and
 click **Open**. Use the hamburger menu **&#9776;** in the top left, and click
 **Run SQL**. Run the following two statements to create a feedback table, and a
-trigger to populate a new column.
+SQL trigger to automatically populate a new column as new rows are inserted.
 
     CREATE TABLE
       violations_feedback(
@@ -320,14 +320,28 @@ trigger to populate a new column.
 
 #### Performance Monitoring
 
-Next, we need to create a trigger for re-training.
+Next, we need to create a trigger in Watson Studio for re-training.
 
 From your project's **Assets** tab in Watson Studio, Click your machine
 learning model ("Violation Predictor"), click the **Evaluation** tab, and click
 **Configure Performance Monitoring**.
 
-Select the feedback metric, the feedback table, Trigger event (Eg: after 50
-rows are added to the table)
+Configure performance monitoring using the following values:
+
+* **Spark Service or Environment**: choose your Apache Spark instance
+* **Prediction type**: _multiclass_
+* **Metric details**: _accuracy_ (leave the value blank)
+* **Record count required for re-evaluation**: `100`
+* **Auto retrain**: _when model performance is below threshold_
+* **Auto deploy**: _when model performance is better than previous version_
+
+Click **Save**.
+
+TODO:
+
+> Error: The feedback table indicated in learning configuration
+> VIOLATIONS_FEEDBACK already exists, but it is not compatible with expected
+> schema: Column ID has incompatible type INTEGER vs expected StringType
 
 When the Trigger event occurs, It will pull in new data from the Feedback table
 and re-train your model. If the new model performs better, this will be
