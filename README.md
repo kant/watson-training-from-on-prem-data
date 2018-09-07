@@ -288,21 +288,41 @@ Use these endpoints in your notebook on new data.
 
 ### Enable continuous learning
 
-#### Configure Performance Monitoring:
+To enable continuous learning, we need to create a trigger for re-training.
 
+From your project's **Assets** tab in Watson Studio, Click your machine
+learning model ("Violation Predictor"), click the **Evaluation** tab, and click
+**Configure Performance Monitoring**.
 > Watson Studio only supports Db2 Watson on Cloud tables as Feedback tables
 
 #### On Db2 Warehouse on Cloud
 
-Create a Row-organized table (Feedback table)
+Next, we need to create a feedback table for use by your model in Db2 Warehouse
+on Cloud. From the IBM Cloud dashboard, navigate to your Db2 Warehouse
+instance, and click **Open**. Use the hamburger menu in the top left, and click
+**Run SQL**. Run the following two statements to create a feedback table, and a
+trigger to populate a new column.
 
-Load data into your table
+    CREATE TABLE
+      violations_feedback(
+        ID INTEGER,
+        VIOLATION_CODE VARCHAR(20),
+        INSPECTOR_ID VARCHAR(15),
+        INSPECTION_STATUS VARCHAR(10),
+        INSPECTION_CATEGORY VARCHAR(10),
+        DEPARTMENT_BUREAU VARCHAR(30),
+        ADDRESS VARCHAR(250),
+        LATITUDE DOUBLE,
+        LONGITUDE DOUBLE,
+        TRAINED TIMESTAMP NOT NULL)
+      ORGANIZE BY ROW;
 
-    CREATE TRIGGER feedback_trigger NO CASCADE BEFORE INSERT ON violations_feedback REFERENCING NEW AS n FOR EACH ROW SET n."_training"=CURRENT_TIMESTAMP
-
-    CREATE TABLE violations_feedback(ID INTEGER,VIOLATION_CODE VARCHAR(20),INSPECTOR_ID VARCHAR(15),INSPECTION_STATUS VARCHAR(10),INSPECTION_CATEGORY VARCHAR(10),DEPARTMENT_BUREAU VARCHAR(30),ADDRESS VARCHAR(250),LATITUDE DOUBLE,LONGITUDE DOUBLE,"_TRAINING" TIMESTAMP NOT NULL) ORGANIZE BY ROW
-
-    Alter table violations_feedback alter column "_TRAINING" set NOT NULL
+    CREATE TRIGGER
+      feedback_trigger
+      NO CASCADE
+      BEFORE INSERT ON violations_feedback
+      REFERENCING NEW AS n
+      FOR EACH ROW SET n.TRAINED=CURRENT_TIMESTAMP;
 
 #### Performance Monitoring
 
