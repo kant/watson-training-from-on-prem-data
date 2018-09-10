@@ -308,7 +308,7 @@ SQL trigger to automatically populate a new column as new rows are inserted.
         ADDRESS VARCHAR(250),
         LATITUDE DOUBLE,
         LONGITUDE DOUBLE,
-        _TRAINING TIMESTAMP NOT NULL)
+        "_TRAINING" TIMESTAMP NOT NULL)
       ORGANIZE BY ROW;
 
     CREATE TRIGGER
