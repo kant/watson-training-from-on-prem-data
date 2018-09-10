@@ -297,6 +297,9 @@ click **Open**. Use the hamburger menu **&#9776;** in the top left, and click
 **Run SQL**. Run the following two statements to create a feedback table, and a
 SQL trigger to automatically populate a new column as new rows are inserted.
 
+> TODO: This schema is not accepted by the performance monitor unless all the
+> `INTEGER` and `DOUBLE` columns are typed as VARCHAR, which seems absurd.
+
     CREATE TABLE
       violations_feedback(
         ID INTEGER,
