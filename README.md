@@ -308,7 +308,7 @@ SQL trigger to automatically populate a new column as new rows are inserted.
         ADDRESS VARCHAR(250),
         LATITUDE DOUBLE,
         LONGITUDE DOUBLE,
-        TRAINED TIMESTAMP NOT NULL)
+        _TRAINING TIMESTAMP NOT NULL)
       ORGANIZE BY ROW;
 
     CREATE TRIGGER
@@ -316,7 +316,7 @@ SQL trigger to automatically populate a new column as new rows are inserted.
       NO CASCADE
       BEFORE INSERT ON violations_feedback
       REFERENCING NEW AS n
-      FOR EACH ROW SET n.TRAINED=CURRENT_TIMESTAMP;
+      FOR EACH ROW SET n."_TRAINING"=CURRENT_TIMESTAMP;
 
 #### Performance Monitoring
 
@@ -347,12 +347,12 @@ When the Trigger event occurs, It will pull in new data from the Feedback table
 and re-train your model. If the new model performs better, this will be
 deployed.
 
-> After Watson Studio uses the Feedback table, it writes a column `TRAINED`
+> After Watson Studio uses the Feedback table, it writes a column `_TRAINING`
 > into the Feedback table, with Timestamp.
 
 This column has a not null constraint. To load new data into the Feedback table-
 
-1. Add a column called `TRAINED` in your dataset
+1. Add a column called `_TRAINING` in your dataset
 
 1. Alter the table and remove the NOT NULL constraint from the column
 
