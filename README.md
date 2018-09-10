@@ -318,6 +318,8 @@ SQL trigger to automatically populate a new column as new rows are inserted.
       REFERENCING NEW AS n
       FOR EACH ROW SET n."_TRAINING"=CURRENT_TIMESTAMP;
 
+    COMMIT;
+
 #### Performance Monitoring
 
 Next, we need to create a trigger in Watson Studio for re-training.
