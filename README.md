@@ -299,14 +299,18 @@ SQL trigger to automatically populate a new column as new rows are inserted.
 
 > TODO: This schema is not accepted by the performance monitor unless all the
 > `INTEGER` and `DOUBLE` columns are typed as VARCHAR, which seems absurd.
+> Otherwise, you get errors configuring performance monitoring such as "The
+> feedback table indicated in learning configuration VIOLATIONS_FEEDBACK
+> already exists, but it is not compatible with expected schema: Column ID has
+> incompatible type INTEGER vs expected StringType"
 
 > TODO: Why would you want the _TRAINING column to be non-nullable in the first
 > place?
 
-> TODO: Is the trigger intended to ease first time setup, or is it supposed to
-> remain as part of the continuous learning process? I would think the machine
-> learning service would populate that column by itself, when re-training
-> occurs.
+> TODO: Is the Db2 trigger intended to ease first time setup, or is it supposed
+> to remain as part of the continuous learning process? I would think the
+> machine learning service would populate that column by itself, when
+> re-training occurs.
 
     CREATE TABLE
       violations_feedback(
@@ -350,24 +354,9 @@ Configure performance monitoring using the following values:
 
 Click **Save**.
 
-TODO:
-
-> Error: The feedback table indicated in learning configuration
-> VIOLATIONS_FEEDBACK already exists, but it is not compatible with expected
-> schema: Column ID has incompatible type INTEGER vs expected StringType
-
-When the Trigger event occurs, It will pull in new data from the Feedback table
-and re-train your model. If the new model performs better, this will be
-deployed.
-
-> After Watson Studio uses the Feedback table, it writes a column `_TRAINING`
-> into the Feedback table, with Timestamp.
-
-This column has a not null constraint. To load new data into the Feedback table-
-
-1. Add a column called `_TRAINING` in your dataset
-
-1. Alter the table and remove the NOT NULL constraint from the column
+When the configured trigger occurs, the Machine Learning service will pull in
+new data from the feedback table and re-train the model. If the new model
+performs better, then it will be automatically deployed.
 
 # License
 
