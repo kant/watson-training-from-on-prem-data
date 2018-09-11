@@ -300,6 +300,14 @@ SQL trigger to automatically populate a new column as new rows are inserted.
 > TODO: This schema is not accepted by the performance monitor unless all the
 > `INTEGER` and `DOUBLE` columns are typed as VARCHAR, which seems absurd.
 
+> TODO: Why would you want the _TRAINING column to be non-nullable in the first
+> place?
+
+> TODO: Is the trigger intended to ease first time setup, or is it supposed to
+> remain as part of the continuous learning process? I would think the machine
+> learning service would populate that column by itself, when re-training
+> occurs.
+
     CREATE TABLE
       violations_feedback(
         ID INTEGER,
