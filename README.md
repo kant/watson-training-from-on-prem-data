@@ -29,6 +29,10 @@ TODO
   dependencies into a standardized unit for software development that includes
   everything it needs to run: code, runtime, system tools and libraries.
 
+## Watch the video
+
+TODO
+
 ## Steps
 
 1. [Create IBM Cloud service instances](#create-ibm-cloud-service-instances)
