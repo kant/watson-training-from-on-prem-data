@@ -17,7 +17,7 @@
     "fenced-code-language": true,
     "required-headers": {
         "headers": [
-            "*"
+            "*",
             "## Flow",
             "## Included components",
             "## Featured technologies",
