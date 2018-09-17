@@ -1,12 +1,11 @@
 {
     "_docs_for_this_file": "https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md",
     "line-length": false,
-    "first-line-h1": true,
+    "first-line-h1": {
+        "front_matter_title": "^\\[!\\[Build Status]\\("
+    },
     "first-header-h1": {
         "level": 1
-    },
-    "front_matter_title": {
-        "string": "^\\[!\\[Build Status]\\("
     },
     "header-style": {
         "style": "atx"
