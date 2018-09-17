@@ -33,7 +33,7 @@
     },
     "spelling": false,
     "no-alt-text": true,
-    "no-blanks-blockquote": false
+    "no-blanks-blockquote": false,
     "html": {
         "allowed_elements": [
             "kbd"
