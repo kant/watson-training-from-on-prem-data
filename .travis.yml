@@ -1,0 +1,7 @@
+language: node_js
+node_js:
+- 8
+before_script:
+- npm install -g markdownlint-cli
+script:
+- markdownlint --config $TRAVIS_BUILD_DIR/.markdownlint.json
