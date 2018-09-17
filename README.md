@@ -23,7 +23,7 @@ TODO
 * [IBM Watson Studio](https://www.ibm.com/cloud/watson-studio): Build and train
   AI models, and prepare and analyze data, in a single, integrated environment.
 
-## Technologies
+## Featured technologies
 
 * [Docker](https://www.docker.com/): Docker containers wrap up software and its
   dependencies into a standardized unit for software development that includes
