@@ -5,6 +5,9 @@
     "first-header-h1": {
         "level": 1
     },
+    "front_matter_title": {
+        "string": "^\[!\[Build Status]\("
+    },
     "header-style": {
         "style": "atx"
     },

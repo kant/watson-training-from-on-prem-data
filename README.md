@@ -1,6 +1,6 @@
-# Continuously train a cloud-based machine learning model from an on-premise database
-
 [![Build Status](https://travis-ci.org/IBM/watson-continuous-learning-on-db2.svg?branch=master)](https://travis-ci.org/IBM/watson-continuous-learning-on-db2)
+
+# Continuously train a cloud-based machine learning model from an on-premise database
 
 TODO
 
