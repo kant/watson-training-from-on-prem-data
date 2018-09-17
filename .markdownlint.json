@@ -32,5 +32,6 @@
         ]
     },
     "spelling": false,
-    "no-alt-text": true
+    "no-alt-text": true,
+    "no-blanks-blockquote": false
 }
