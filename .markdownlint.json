@@ -6,7 +6,7 @@
         "level": 1
     },
     "front_matter_title": {
-        "string": "^\[!\[Build Status]\("
+        "string": "^\\[!\\[Build Status]\\("
     },
     "header-style": {
         "style": "atx"
