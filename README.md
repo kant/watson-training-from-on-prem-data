@@ -88,9 +88,9 @@ Start by using [`docker run`](https://docs.docker.com/engine/reference/run/) to
 launch Db2 community edition in a container running in the background.
 
 > Including the `--env LICENSE="accept"` argument indicates your acceptance of
-  the [license
-  agreement](http://www-03.ibm.com/software/sla/sladb.nsf/displaylis/5DF1EE126832D3F185257DAB0064BEFA?OpenDocument)
-  to use the software contained in the Docker image.
+> the [license
+> agreement](http://www-03.ibm.com/software/sla/sladb.nsf/displaylis/5DF1EE126832D3F185257DAB0064BEFA?OpenDocument)
+> to use the software contained in the Docker image.
 
 This command sets a password for the default instance user (`db2inst1`) to
 `db2inst1-pwd` and binds Db2 to listen on port `50000` of your workstation:
