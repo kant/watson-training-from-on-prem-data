@@ -364,6 +364,6 @@ When the configured trigger occurs, the Machine Learning service will pull in
 new data from the feedback table and re-train the model. If the new model
 performs better, then it will be automatically deployed.
 
-# License
+## License
 
 [Apache 2.0](LICENSE)
