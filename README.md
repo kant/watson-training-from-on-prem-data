@@ -172,13 +172,13 @@ $ hostname -I
 ```
 
 > Your workstation may have more than one IP, but any of them will likely work
-  for the purposes of this code pattern, because Docker will bind to all
-  network interfaces.
+> for the purposes of this code pattern, because Docker will bind to all
+> network interfaces.
 
 > It's worth mentioning that `loopback` addresses (e.g. `127.0.0.1`) will not
-  work here, because IBM Cloud services consuming the Secure Gateway will not
-  be able to distinguish between their own `loopback` interfaces and a
-  `loopback` interface on your end of the Secure Gateway.
+> work here, because IBM Cloud services consuming the Secure Gateway will not
+> be able to distinguish between their own `loopback` interfaces and a
+> `loopback` interface on your end of the Secure Gateway.
 
 For the purposes of this code pattern, we'll assume that your LAN IP is
 `192.168.1.100`.
@@ -208,7 +208,7 @@ Incoming connections from Watson Studio which pass through the secure gateway
 will now be able to access Db2.
 
 > When you're finished with this code pattern, you can close the secure gateway
-  by typing `quit` at the prompt and pressing <kbd>Enter</kbd>.
+> by typing `quit` at the prompt and pressing <kbd>Enter</kbd>.
 
 See the
 [documentation](https://console.bluemix.net/docs/services/SecureGateway/index.html#getting-started-with-sg)
