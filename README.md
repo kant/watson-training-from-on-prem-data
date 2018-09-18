@@ -374,7 +374,9 @@ TODO
 
 ## Links
 
-TODO
+* [Continuous Learning on Watson
+  Studio](https://medium.com/ibm-data-science-experience/continuous-learning-on-watson-data-platform-cc39f3fd5042)
+* [IBM Continuous Learning Blog Post Companion Materials](https://github.com/IBMDataScience/buildings_blog)
 
 ## Learn more
 
