@@ -384,7 +384,7 @@ performs better, then it will be automatically deployed.
 
 ## Sample output
 
-TODO
+![](http://browser-testing-cdn.dolphm.com/watson-continuous-learning-on-db2.png)
 
 ## Troubleshooting
 
