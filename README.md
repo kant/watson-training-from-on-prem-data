@@ -31,7 +31,7 @@ TODO
 
 ## Watch the video
 
-TODO
+[![](https://img.youtube.com/vi/HCVxGMd1RiQ/maxresdefault.jpg)](https://www.youtube.com/watch?v=HCVxGMd1RiQ)
 
 ## Steps
 
