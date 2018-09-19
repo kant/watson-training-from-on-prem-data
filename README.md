@@ -1,6 +1,6 @@
-# Continuously train a cloud-based machine learning model from an on-premise database
+# Train a cloud-based machine learning model from an on-premise database
 
-[![Build Status](https://travis-ci.org/IBM/watson-continuous-learning-on-db2.svg?branch=master)](https://travis-ci.org/IBM/watson-continuous-learning-on-db2)
+[![Build Status](https://travis-ci.org/IBM/training-watson-from-on-prem-db2.svg?branch=master)](https://travis-ci.org/IBM/training-watson-from-on-prem-db2)
 
 TODO
 
@@ -11,15 +11,9 @@ TODO
 1. Source data is retained in on-premise Db2 database.
 1. Data is accessible to Watson Studio via a Secure Gateway.
 1. Secure gateway is utilized to train a cloud-based machine learning model.
-1. Training feedback is stored in Db2 Warehouse for continuous learning.
 
 ## Included components
 
-* [IBM Db2 Warehouse on
-  Cloud](https://www.ibm.com/cloud/db2-warehouse-on-cloud): An elastic,
-  fully-managed cloud data warehouse service that is powered by IBM BLU
-  Acceleration technology for increased performance and optimization of
-  analytics at a massive scale.
 * [IBM Watson Studio](https://www.ibm.com/cloud/watson-studio): Build and train
   AI models, and prepare and analyze data, in a single, integrated environment.
 
@@ -40,7 +34,6 @@ TODO
 1. [Configure a secure gateway to IBM Cloud](#configure-a-secure-gateway-to-ibm-cloud)
 1. [Connect to on-premise Db2 database from Watson Studio](#connect-to-on-premise-db2-database-from-watson-studio)
 1. [Create a machine learning model](#create-a-machine-learning-model)
-1. [Enable continuous learning](#enable-continuous-learning)
 
 ### Create IBM Cloud service instances
 
@@ -49,7 +42,6 @@ up for Watson Studio](https://www.ibm.com/cloud/watson-studio), which you can
 do for free. In our use case, Watson Studio will rely on the Object Storage
 service to store it's data, the Apache Spark service for data processing,
 and the Machine Learning service for building machine learning models.
-Finally, we'll use a DB2 Warehouse to enable continuous learning.
 
 From the [IBM Cloud Catalog](https://console.bluemix.net/catalog/), select the
 [**Storage**](https://console.bluemix.net/catalog/?category=storage) category,
@@ -57,7 +49,7 @@ and then the [**Object
 Storage**](https://console.bluemix.net/catalog/services/cloud-object-storage)
 service. Then, click **Create**.
 
-![Create IBM Cloud Object Storage service](http://browser-testing-cdn.dolphm.com/watson-continuous-learning-on-db2-create-object-storage.png)
+![Create IBM Cloud Object Storage service](http://browser-testing-cdn.dolphm.com/training-watson-from-on-prem-db2-create-object-storage.png)
 
 From the [IBM Cloud Catalog](https://console.bluemix.net/catalog/), select the
 [**Web and
@@ -66,7 +58,7 @@ category, and then the [**Apache
 Spark**](https://console.bluemix.net/catalog/services/apache-spark) service.
 Then, click **Create**.
 
-![Create IBM Cloud Apache Spark instance](http://browser-testing-cdn.dolphm.com/watson-continuous-learning-on-db2-create-apache-spark.png)
+![Create IBM Cloud Apache Spark instance](http://browser-testing-cdn.dolphm.com/training-watson-from-on-prem-db2-create-apache-spark.png)
 
 From the [IBM Cloud Catalog](https://console.bluemix.net/catalog/), select the
 [**AI**](https://console.bluemix.net/catalog/?category=ai) category, and then
@@ -74,15 +66,7 @@ the [**Watson
 Studio**](https://console.bluemix.net/catalog/services/watson-studio) service.
 Then, click **Create**.
 
-![Create IBM Cloud Watson Studio service](http://browser-testing-cdn.dolphm.com/watson-continuous-learning-on-db2-create-watson-studio.png)
-
-From the [IBM Cloud Catalog](https://console.bluemix.net/catalog/), select the
-[**Databases**](https://console.bluemix.net/catalog/?category=databases)
-category, and then the [**Db2
-Warehouse**](https://console.bluemix.net/catalog/services/db2-warehouse)
-service. Then, click **Create**.
-
-![Create IBM Cloud Db2 Warehouse instance](http://browser-testing-cdn.dolphm.com/watson-continuous-learning-on-db2-create-db2-warehouse.png)
+![Create IBM Cloud Watson Studio service](http://browser-testing-cdn.dolphm.com/training-watson-from-on-prem-db2-create-watson-studio.png)
 
 ### Load sample data into an on-premise Db2 database
 
@@ -199,7 +183,7 @@ Create a [Secure
 Gateway](https://console.bluemix.net/catalog/services/secure-gateway) from the
 IBM Cloud Catalog.
 
-![Create a new Secure Gateway](http://browser-testing-cdn.dolphm.com/watson-continuous-learning-on-db2-new-secure-gateway.png)
+![Create a new Secure Gateway](http://browser-testing-cdn.dolphm.com/training-watson-from-on-prem-db2-new-secure-gateway.png)
 
 Once the gateway is created, select **Connect Client** and choose **Docker** as
 the connection method.
@@ -232,20 +216,20 @@ for additional configuration options.
 
 Create a **New Project**.
 
-![Watson Studio home](http://browser-testing-cdn.dolphm.com/watson-continuous-learning-on-db2-dataplatform-home.png)
+![Watson Studio home](http://browser-testing-cdn.dolphm.com/training-watson-from-on-prem-db2-dataplatform-home.png)
 
 Select **Complete**, when prompted.
 
 Enter `Violations` as the project name, and click **Create**.
 
-![New Watson Studio project](http://browser-testing-cdn.dolphm.com/watson-continuous-learning-on-db2-new-project.png)
+![New Watson Studio project](http://browser-testing-cdn.dolphm.com/training-watson-from-on-prem-db2-new-project.png)
 
 Near the top right of the screen, select the **Add to project** dropdown, choose
 **Connection**, and select **Db2** from the available options.
 
-![Add to Watson Studio project](http://browser-testing-cdn.dolphm.com/watson-continuous-learning-on-db2-add-to-project.png)
+![Add to Watson Studio project](http://browser-testing-cdn.dolphm.com/training-watson-from-on-prem-db2-add-to-project.png)
 
-![New Db2 connection](http://browser-testing-cdn.dolphm.com/watson-continuous-learning-on-db2-new-db2-connection.png)
+![New Db2 connection](http://browser-testing-cdn.dolphm.com/training-watson-from-on-prem-db2-new-db2-connection.png)
 
 Configure the connection as follows:
 
@@ -306,85 +290,11 @@ Col)**, and choose **Multiclass Classification** as your technique. Click
 
 When training is complete, click **Save** to store your model.
 
-You can now use the model's endpoint in your own application. However, if you
-also enable continuous learning, then your application will become smarter over
-time, without having to update the application.
-
-### Enable continuous learning
-
-In order to enable continuous learning, we need to create a feedback loop to
-the machine learning model. To accomplish that, we need to create a feedback
-table in Db2 Warehouse on Cloud.
-
-From the IBM Cloud dashboard, navigate to your Db2 Warehouse instance, and
-click **Open**. Use the hamburger menu **&#9776;** in the top left, and click
-**Run SQL**. Run the following two statements to create a feedback table, and a
-SQL trigger to automatically populate a new column as new rows are inserted.
-
-> TODO: This schema is not accepted by the performance monitor unless all the
-> `INTEGER` and `DOUBLE` columns are typed as VARCHAR, which seems absurd.
-> Otherwise, you get errors configuring performance monitoring such as "The
-> feedback table indicated in learning configuration VIOLATIONS_FEEDBACK
-> already exists, but it is not compatible with expected schema: Column ID has
-> incompatible type INTEGER vs expected StringType"
-
-> TODO: Why would you want the _TRAINING column to be non-nullable in the first
-> place?
-
-> TODO: Is the Db2 trigger intended to ease first time setup, or is it supposed
-> to remain as part of the continuous learning process? I would think the
-> machine learning service would populate that column by itself, when
-> re-training occurs.
-
-    CREATE TABLE
-      violations_feedback(
-        ID INTEGER,
-        VIOLATION_CODE VARCHAR(20),
-        INSPECTOR_ID VARCHAR(15),
-        INSPECTION_STATUS VARCHAR(10),
-        INSPECTION_CATEGORY VARCHAR(10),
-        DEPARTMENT_BUREAU VARCHAR(30),
-        ADDRESS VARCHAR(250),
-        LATITUDE DOUBLE,
-        LONGITUDE DOUBLE,
-        "_TRAINING" TIMESTAMP NOT NULL)
-      ORGANIZE BY ROW;
-
-    CREATE TRIGGER
-      feedback_trigger
-      NO CASCADE
-      BEFORE INSERT ON violations_feedback
-      REFERENCING NEW AS n
-      FOR EACH ROW SET n."_TRAINING"=CURRENT_TIMESTAMP;
-
-    COMMIT;
-
-#### Performance Monitoring
-
-Next, we need to create a trigger in Watson Studio for re-training.
-
-From your project's **Assets** tab in Watson Studio, Click your machine
-learning model ("Violation Predictor"), click the **Evaluation** tab, and click
-**Configure Performance Monitoring**.
-
-Configure performance monitoring using the following values:
-
-* **Spark Service or Environment**: choose your Apache Spark instance
-* **Prediction type**: _multiclass_
-* **Metric details**: _accuracy_ (leave the value blank)
-* **Record count required for re-evaluation**: `100`
-* **Auto retrain**: _when model performance is below threshold_
-* **Auto deploy**: _when model performance is better than previous version_
-
-Click **Save**.
-
-When the configured trigger occurs, the Machine Learning service will pull in
-new data from the feedback table and re-train the model. If the new model
-performs better, then it will be automatically deployed.
+You can now use the model's endpoint in your own application.
 
 ## Sample output
 
-![Continuous learning](http://browser-testing-cdn.dolphm.com/watson-continuous-learning-on-db2.png)
+![Cloud-based machine learning from on-prem database](http://browser-testing-cdn.dolphm.com/training-watson-from-on-prem-db2.png)
 
 ## Troubleshooting
 
@@ -392,8 +302,7 @@ TODO
 
 ## Links
 
-* [Continuous Learning on Watson Studio](https://medium.com/ibm-data-science-experience/continuous-learning-on-watson-data-platform-cc39f3fd5042)
-* [IBM Continuous Learning Blog Post Companion Materials](https://github.com/IBMDataScience/buildings_blog)
+TODO
 
 ## Learn more
 
