@@ -37,11 +37,11 @@ TODO
 
 ### Create IBM Cloud service instances
 
-In order to build and train your machine learning model, you'll need to [sign
-up for Watson Studio](https://www.ibm.com/cloud/watson-studio), which you can
-do for free. In our use case, Watson Studio will rely on the Object Storage
-service to store it's data, the Apache Spark service for data processing,
-and the Machine Learning service for building machine learning models.
+In order to build and train your machine learning model, you'll first need to
+[sign up for Watson Studio](https://www.ibm.com/cloud/watson-studio), which you
+can do for free. In our use case, Watson Studio will rely on the Object Storage
+service to store it's data, the Apache Spark service for data processing, and
+the Machine Learning service for building machine learning models.
 
 From the [IBM Cloud Catalog](https://console.bluemix.net/catalog/), select the
 [**Storage**](https://console.bluemix.net/catalog/?category=storage) category,
@@ -49,7 +49,7 @@ and then the [**Object
 Storage**](https://console.bluemix.net/catalog/services/cloud-object-storage)
 service. Then, click **Create**.
 
-![Create IBM Cloud Object Storage service](http://browser-testing-cdn.dolphm.com/training-watson-from-on-prem-db2-create-object-storage.png)
+![Create IBM Cloud Object Storage service](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-create-object-storage.png)
 
 From the [IBM Cloud Catalog](https://console.bluemix.net/catalog/), select the
 [**Web and
@@ -58,7 +58,7 @@ category, and then the [**Apache
 Spark**](https://console.bluemix.net/catalog/services/apache-spark) service.
 Then, click **Create**.
 
-![Create IBM Cloud Apache Spark instance](http://browser-testing-cdn.dolphm.com/training-watson-from-on-prem-db2-create-apache-spark.png)
+![Create IBM Cloud Apache Spark instance](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-create-apache-spark.png)
 
 From the [IBM Cloud Catalog](https://console.bluemix.net/catalog/), select the
 [**AI**](https://console.bluemix.net/catalog/?category=ai) category, and then
@@ -66,7 +66,7 @@ the [**Watson
 Studio**](https://console.bluemix.net/catalog/services/watson-studio) service.
 Then, click **Create**.
 
-![Create IBM Cloud Watson Studio service](http://browser-testing-cdn.dolphm.com/training-watson-from-on-prem-db2-create-watson-studio.png)
+![Create IBM Cloud Watson Studio service](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-create-watson-studio.png)
 
 ### Load sample data into an on-premise Db2 database
 
@@ -183,7 +183,7 @@ Create a [Secure
 Gateway](https://console.bluemix.net/catalog/services/secure-gateway) from the
 IBM Cloud Catalog.
 
-![Create a new Secure Gateway](http://browser-testing-cdn.dolphm.com/training-watson-from-on-prem-db2-new-secure-gateway.png)
+![Create a new Secure Gateway](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-new-secure-gateway.png)
 
 Once the gateway is created, select **Connect Client** and choose **Docker** as
 the connection method.
@@ -216,20 +216,20 @@ for additional configuration options.
 
 Create a **New Project**.
 
-![Watson Studio home](http://browser-testing-cdn.dolphm.com/training-watson-from-on-prem-db2-dataplatform-home.png)
+![Watson Studio home](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-dataplatform-home.png)
 
 Select **Complete**, when prompted.
 
 Enter `Violations` as the project name, and click **Create**.
 
-![New Watson Studio project](http://browser-testing-cdn.dolphm.com/training-watson-from-on-prem-db2-new-project.png)
+![New Watson Studio project](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-new-project.png)
 
 Near the top right of the screen, select the **Add to project** dropdown, choose
 **Connection**, and select **Db2** from the available options.
 
-![Add to Watson Studio project](http://browser-testing-cdn.dolphm.com/training-watson-from-on-prem-db2-add-to-project.png)
+![Add to Watson Studio project](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-add-to-project.png)
 
-![New Db2 connection](http://browser-testing-cdn.dolphm.com/training-watson-from-on-prem-db2-new-db2-connection.png)
+![New Db2 connection](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-new-db2-connection.png)
 
 Configure the connection as follows:
 
@@ -294,7 +294,7 @@ You can now use the model's endpoint in your own application.
 
 ## Sample output
 
-![Cloud-based machine learning from on-prem database](http://browser-testing-cdn.dolphm.com/training-watson-from-on-prem-db2.png)
+![Cloud-based machine learning from on-prem database](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data.png)
 
 ## Troubleshooting
 
