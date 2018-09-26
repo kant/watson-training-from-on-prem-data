@@ -302,7 +302,8 @@ You can now use the model's endpoint in your own application.
 
 ## Links
 
-* [**Continuous learning on Db2**](https://github.com/IBM/watson-continuous-learning-on-db2)
+* Related code pattern: [Continuous learning on Db2](https://github.com/IBM/watson-continuous-learning-on-db2)
+* Related video: [Continuous Learning on Watson Data Platform](https://www.youtube.com/watch?v=HCVxGMd1RiQ)
 
 ## Learn more
 
