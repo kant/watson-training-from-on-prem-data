@@ -19,8 +19,7 @@ TODO
 * [Secure Gateway](https://www.ibm.com/cloud/secure-gateway): Create a secure,
   persistent connection between your protected environment and the cloud.
 * [Db2](https://www.ibm.com/analytics/us/en/db2/): On-premises database optimized
-  to deliver industry-leading performance while lowering costs. IBM Db2 Database
-  is supported across Linux, Unix, and Windows operating systems.
+  to deliver industry-leading performance while lowering costs.
 
 ## Featured technologies
 
