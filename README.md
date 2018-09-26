@@ -302,7 +302,7 @@ You can now use the model's endpoint in your own application.
 
 ## Links
 
-TODO
+* [**Continuous learning on Db2**](https://github.com/IBM/watson-continuous-learning-on-db2)
 
 ## Learn more
 
