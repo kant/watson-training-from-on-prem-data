@@ -298,7 +298,7 @@ You can now use the model's endpoint in your own application.
 
 ## Troubleshooting
 
-TODO
+* `No secure gateways found.`: You're secure gateway client (in Docker) is not connected.
 
 ## Links
 
