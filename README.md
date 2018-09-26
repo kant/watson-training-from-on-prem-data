@@ -302,6 +302,10 @@ You can now use the model's endpoint in your own application.
 
 ## Links
 
+* [IBM Watson Studio](https://dataplatform.cloud.ibm.com/docs/content/getting-started/welcome-main.html) documentation
+* [IBM Secure Gateway](https://console.bluemix.net/docs/services/SecureGateway/index.html) documentation
+* [Docker](https://docs.docker.com/) documentation
+* [Db2](https://www.ibm.com/support/knowledgecenter/SSEPGG_10.5.0/com.ibm.db2.luw.kc.doc/welcome.html) documentation
 * Related code pattern: [Continuous learning on Db2](https://github.com/IBM/watson-continuous-learning-on-db2)
 * Related video: [Continuous Learning on Watson Data Platform](https://www.youtube.com/watch?v=HCVxGMd1RiQ)
 
