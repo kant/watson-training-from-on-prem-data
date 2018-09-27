@@ -53,7 +53,7 @@ and then the [**Object
 Storage**](https://console.bluemix.net/catalog/services/cloud-object-storage)
 service. Then, click **Create**.
 
-![Create IBM Cloud Object Storage service](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-create-object-storage.png)
+![Create IBM Cloud Object Storage service](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-01.png)
 
 From the [IBM Cloud Catalog](https://console.bluemix.net/catalog/), select the
 [**Web and
@@ -62,7 +62,7 @@ category, and then the [**Apache
 Spark**](https://console.bluemix.net/catalog/services/apache-spark) service.
 Then, click **Create**.
 
-![Create IBM Cloud Apache Spark instance](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-create-apache-spark.png)
+![Create IBM Cloud Apache Spark instance](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-02.png)
 
 From the [IBM Cloud Catalog](https://console.bluemix.net/catalog/), select the
 [**AI**](https://console.bluemix.net/catalog/?category=ai) category, and then
@@ -70,7 +70,7 @@ the [**Watson
 Studio**](https://console.bluemix.net/catalog/services/watson-studio) service.
 Then, click **Create**.
 
-![Create IBM Cloud Watson Studio service](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-create-watson-studio.png)
+![Create IBM Cloud Watson Studio service](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-03.png)
 
 ### Load sample data into an on-premise Db2 database
 
