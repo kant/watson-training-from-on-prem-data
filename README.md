@@ -50,46 +50,11 @@ authorized users can access.
 
 ## Steps
 
-1. [Create IBM Cloud service instances](#create-ibm-cloud-service-instances)
 1. [Load sample data into an on-premise Db2 database](#load-sample-data-into-an-on-premise-db2-database)
+1. [Create IBM Cloud service instances](#create-ibm-cloud-service-instances)
 1. [Create a Watson Studio project](#create-a-watson-studio-project)
 1. [Configure a secure gateway to IBM Cloud](#configure-a-secure-gateway-to-ibm-cloud)
 1. [Create a machine learning model](#create-a-machine-learning-model)
-
-### Create IBM Cloud service instances
-
-In order to build and train your machine learning model, you'll first need to
-[sign up for Watson Studio](https://www.ibm.com/cloud/watson-studio), which you
-can do for free. In our use case, Watson Studio will rely on the Object Storage
-service to store it's data, the Apache Spark service for data processing, and
-the Machine Learning service for building machine learning models.
-
-From the [IBM Cloud Catalog](https://console.bluemix.net/catalog/), select the
-[**Storage**](https://console.bluemix.net/catalog/?category=storage) category,
-and then the [**Object
-Storage**](https://console.bluemix.net/catalog/services/cloud-object-storage)
-service. Then, click **Create**.
-
-![Create IBM Cloud Object Storage service](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-01.png)
-
-From the [IBM Cloud Catalog](https://console.bluemix.net/catalog/), select the
-[**Web and
-Application**](https://console.bluemix.net/catalog/?category=app_services)
-category, and then the [**Apache
-Spark**](https://console.bluemix.net/catalog/services/apache-spark) service.
-Then, click **Create**.
-
-![Create IBM Cloud Apache Spark instance](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-02.png)
-
-From the [IBM Cloud Catalog](https://console.bluemix.net/catalog/), select the
-[**AI**](https://console.bluemix.net/catalog/?category=ai) category, and then
-the [**Watson
-Studio**](https://console.bluemix.net/catalog/services/watson-studio) service.
-Then, click **Create**.
-
-![Create IBM Cloud Watson Studio service](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-03.png)
-
-Click the **Get Started** button to navigate to Watson Studio.
 
 ### Load sample data into an on-premise Db2 database
 
@@ -175,6 +140,41 @@ docker exec db2 su - db2inst1 -c "db2 CONNECT TO onprem USER watson USING secret
 ```
 
 At this point, you have a Db2 database instance loaded with sample data.
+
+### Create IBM Cloud service instances
+
+In order to build and train your machine learning model, you'll first need to
+[sign up for Watson Studio](https://www.ibm.com/cloud/watson-studio), which you
+can do for free. In our use case, Watson Studio will rely on the Object Storage
+service to store it's data, the Apache Spark service for data processing, and
+the Machine Learning service for building machine learning models.
+
+From the [IBM Cloud Catalog](https://console.bluemix.net/catalog/), select the
+[**Storage**](https://console.bluemix.net/catalog/?category=storage) category,
+and then the [**Object
+Storage**](https://console.bluemix.net/catalog/services/cloud-object-storage)
+service. Then, click **Create**.
+
+![Create IBM Cloud Object Storage service](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-01.png)
+
+From the [IBM Cloud Catalog](https://console.bluemix.net/catalog/), select the
+[**Web and
+Application**](https://console.bluemix.net/catalog/?category=app_services)
+category, and then the [**Apache
+Spark**](https://console.bluemix.net/catalog/services/apache-spark) service.
+Then, click **Create**.
+
+![Create IBM Cloud Apache Spark instance](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-02.png)
+
+From the [IBM Cloud Catalog](https://console.bluemix.net/catalog/), select the
+[**AI**](https://console.bluemix.net/catalog/?category=ai) category, and then
+the [**Watson
+Studio**](https://console.bluemix.net/catalog/services/watson-studio) service.
+Then, click **Create**.
+
+![Create IBM Cloud Watson Studio service](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-03.png)
+
+Click the **Get Started** button to navigate to Watson Studio.
 
 ### Create a Watson Studio project
 
