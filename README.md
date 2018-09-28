@@ -51,8 +51,8 @@ authorized users can access.
 ## Steps
 
 1. [Create IBM Cloud service instances](#create-ibm-cloud-service-instances)
-1. [Create a Watson Studio project](#create-a-watson-studio-project)
 1. [Load sample data into an on-premise Db2 database](#load-sample-data-into-an-on-premise-db2-database)
+1. [Create a Watson Studio project](#create-a-watson-studio-project)
 1. [Configure a secure gateway to IBM Cloud](#configure-a-secure-gateway-to-ibm-cloud)
 1. [Create a machine learning model](#create-a-machine-learning-model)
 
@@ -90,70 +90,6 @@ Then, click **Create**.
 ![Create IBM Cloud Watson Studio service](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-03.png)
 
 Click the **Get Started** button to navigate to Watson Studio.
-
-### Create a Watson Studio project
-
-If you're not already in Watson Studio, click your Watson Studio instance from the IBM Cloud Dashboard, and click the **Get Started** button.
-
-![Watson Studio](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-04.png)
- 
-Click the **New Project** button, and select **Complete**, when prompted, to enable all features in Watson Studio.
-
-![New Watson Studio Project](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-05.png)
-
-Enter `Violations` as the project name, and click **Create**.
-
-![Watson Studio](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-06.png)
-
-Near the top right of the screen, select the **Add to project** dropdown and choose
-**Connection**.
-
-![New Watson Studio connection](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-07.png)
-
-Select **Db2** from the available options to connect to Db2.
-
-![New Watson Studio connection](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-08.png)
-
-Configure the connection as follows:
-
-* **Name**: `On-Premise`
-* **Database**: `onprem`
-* **Hostname or IP Address**: your workstation's LAN IP (e.g. `192.168.1.100`)
-* **Port**: `50000`
-* **Secure Gateway**: &#9745; (and ensure your new Secure Gateway is selected in
-  the corresponding dropdown menu)
-* **Username**: `watson`
-* **Password**: `secrete`
-
-![New connection configuration](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-09.png)
-
-In the secure gateway terminal, you should see a log message indicating that a
-connection was successfully established from Watson Studio:
-
-    [2018-08-31 10:38:38.708] [INFO] (Client ID K75lSQ0Oppd_d87) Connection #1 is being established to 192.168.1.100:50000
-
-Click the **Add to Project** dropdown again, and choose **Connected assets**.
-
-Click **Select source**, then choose the **On-Premise** connection, then the
-**WATSON** database, then the **VIOLATIONS** table, and finally, click the
-**Select** button at the bottom of the screen.
-
-#### Refine the asset
-
-Watson Machine Learning models do not directly support data assets from
-on-premise Db2 instances, so we have to setup a conversion process to "refine"
-the data asset into a `CSV` file in object storage.
-
-From the **Data assets** table, click on **Violations** (with **Data Asset** in
-the **Type** column). At the top right, click **Refine**. We don't need to
-manipulate the data, so simply click the "run" button labeled with a
-**&#9654;** icon at the top right. The data flow output will show that you're
-creating a `CSV` file, which will be saved into your object storage bucket.
-Click **Save and Run**. You can then opt to view the data flow's progress by
-clicking **View Flow**.
-
-From your project **Assets** screen, you should now see a new **Data asset**
-named `Violations_shaped.csv`.
 
 ### Load sample data into an on-premise Db2 database
 
@@ -240,10 +176,46 @@ docker exec db2 su - db2inst1 -c "db2 CONNECT TO onprem USER watson USING secret
 
 At this point, you have a Db2 database instance loaded with sample data.
 
+### Create a Watson Studio project
+
+If you're not already in Watson Studio, select your Watson Studio instance from the IBM Cloud Dashboard, and then click the **Get Started** button.
+
+![Watson Studio](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-04.png)
+ 
+From Watson Studio, click the **New Project** button, and select **Complete**, when prompted, to enable all features in Watson Studio.
+
+![New Watson Studio Project](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-05.png)
+
+Enter `Violations` as the project name, and click **Create**.
+
+![Watson Studio](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-06.png)
+
+Near the top right of the screen, select the **Add to project** dropdown and choose
+**Connection**.
+
+![New Watson Studio connection](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-07.png)
+
+Select **Db2** from the available options to connect to Db2.
+
+![New Watson Studio connection](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-08.png)
+
+Configure the connection as follows:
+
+* **Name**: `On-Premise`
+* **Database**: `onprem`
+* **Hostname or IP Address**: your workstation's LAN IP (e.g. `192.168.1.100`)
+* **Port**: `50000`
+* **Secure Gateway**: &#9745; Use a secure gateway
+* **Username**: `watson`
+* **Password**: `secrete`
+
+![New connection configuration](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-09.png)
+
+To enable Watson studio to access the on-premise database, select **New Secure Gateway** before proceeding with the connection setup.
+
 ### Configure a secure gateway to IBM Cloud
 
-To enable Watson studio to access the on-premise database, you'll need to
-configure a secure gateway, which allows limited network ingress to your
+The secure gateway allows limited network ingress to your
 on-premise network as governed by an access control list (ACL).
 
 Before you begin, you need to take note of your workstation's LAN IP. You can
@@ -266,12 +238,19 @@ $ hostname -I
 For the purposes of this code pattern, we'll assume that your LAN IP is
 `192.168.1.100`.
 
-Create a [Secure
-Gateway](https://console.bluemix.net/catalog/services/secure-gateway) from the
-IBM Cloud Catalog.
+From the **Secure Gateway** creation screen, select the **Essentials** plan and click **Create**.
 
-Once the gateway is created, select **Connect Client** and choose **Docker** as
-the connection method.
+![New secure gateway](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-10.png)
+
+Once the gateway is created, select the _disabled_ **Db2** destination.
+
+![New Secure Gateway](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-11.png)
+
+Select **Clients*, and then **Connect Client**.
+
+![Connect Secure Gateway client](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-12.png)
+
+Select **Connect Client**, and take note of your **Gateway ID** and **Security Token**. Choose **Docker** as the connection method.
 
 The console will provide you with a complete Docker command to download and run
 the secure gateway client, which looks something like `docker run -it
@@ -290,12 +269,41 @@ by Docker on your workstation's LAN IP address (e.g. `192.168.1.100`):
 Incoming connections from Watson Studio which pass through the secure gateway
 will now be able to access Db2.
 
-> When you're finished with this code pattern, you can close the secure gateway
-> by typing `quit` at the prompt and pressing <kbd>Enter</kbd>.
+Lastly, click the gear icon in the top left, and **Enable** the gateway.
+Switch back to the **New Connection** tab in your web browser. Your new Secure Gateway should now be an available option, and you can proceed by clicking the **Create** button.
 
-See the
-[documentation](https://console.bluemix.net/docs/services/SecureGateway/index.html#getting-started-with-sg)
-for additional configuration options.
+![Connect Secure Gateway client](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-13.png)
+
+> When you're finished with this code pattern, you can close the secure gateway
+> by typing `quit` at the secure gateway prompt and pressing <kbd>Enter</kbd>.
+
+In the secure gateway terminal, you should see a log message indicating that a
+connection was successfully established from Watson Studio:
+
+    [2018-08-31 10:38:38.708] [INFO] (Client ID K75lSQ0Oppd_d87) Connection #1 is being established to 192.168.1.100:50000
+
+Click the **Add to Project** dropdown again, and choose **Connected assets**.
+
+Click **Select source**, then choose the **On-Premise** connection, then the
+**WATSON** database, then the **VIOLATIONS** table, and finally, click the
+**Select** button at the bottom of the screen.
+
+#### Refine the asset
+
+Watson Machine Learning models do not directly support data assets from
+on-premise Db2 instances, so we have to setup a conversion process to "refine"
+the data asset into a `CSV` file in object storage.
+
+From the **Data assets** table, click on **Violations** (with **Data Asset** in
+the **Type** column). At the top right, click **Refine**. We don't need to
+manipulate the data, so simply click the "run" button labeled with a
+**&#9654;** icon at the top right. The data flow output will show that you're
+creating a `CSV` file, which will be saved into your object storage bucket.
+Click **Save and Run**. You can then opt to view the data flow's progress by
+clicking **View Flow**.
+
+From your project **Assets** screen, you should now see a new **Data asset**
+named `Violations_shaped.csv`.
 
 ### Create a machine learning model
 
