@@ -51,7 +51,7 @@ authorized users can access.
 ## Steps
 
 1. [Create IBM Cloud service instances](#create-ibm-cloud-service-instances)
-1. [Connect to on-premise Db2 database from Watson Studio](#connect-to-on-premise-db2-database-from-watson-studio)
+1. [Create a Watson Studio project](#create-a-watson-studio-project)
 1. [Load sample data into an on-premise Db2 database](#load-sample-data-into-an-on-premise-db2-database)
 1. [Configure a secure gateway to IBM Cloud](#configure-a-secure-gateway-to-ibm-cloud)
 1. [Create a machine learning model](#create-a-machine-learning-model)
@@ -91,13 +91,13 @@ Then, click **Create**.
 
 Click the **Get Started** button to navigate to Watson Studio.
 
-### Connect to on-premise Db2 database from Watson Studio
+### Create a Watson Studio project
 
 If you're not already in Watson Studio, click your Watson Studio instance from the IBM Cloud Dashboard, and click the **Get Started** button.
 
 ![Watson Studio](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-04.png)
  
-Click the **New Project** button, and select **Complete**, when prompted.
+Click the **New Project** button, and select **Complete**, when prompted, to enable all features in Watson Studio.
 
 ![New Watson Studio Project](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-05.png)
 
@@ -105,8 +105,14 @@ Enter `Violations` as the project name, and click **Create**.
 
 ![Watson Studio](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-06.png)
 
-Near the top right of the screen, select the **Add to project** dropdown, choose
-**Connection**, and select **Db2** from the available options.
+Near the top right of the screen, select the **Add to project** dropdown and choose
+**Connection**.
+
+![New Watson Studio connection](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-07.png)
+
+Select **Db2** from the available options to connect to Db2.
+
+![New Watson Studio connection](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-08.png)
 
 Configure the connection as follows:
 
@@ -118,6 +124,8 @@ Configure the connection as follows:
   the corresponding dropdown menu)
 * **Username**: `watson`
 * **Password**: `secrete`
+
+![New connection configuration](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-09.png)
 
 In the secure gateway terminal, you should see a log message indicating that a
 connection was successfully established from Watson Studio:
