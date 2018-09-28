@@ -141,6 +141,26 @@ docker exec db2 su - db2inst1 -c "db2 CONNECT TO onprem USER watson USING secret
 
 At this point, you have a Db2 database instance loaded with sample data.
 
+Before you proceed further, you also need to take note of your workstation's LAN IP. You can
+find that address using:
+
+```bash
+$ hostname -I
+192.168.1.100
+```
+
+> Your workstation may have more than one IP, but any of them will likely work
+> for the purposes of this code pattern, because Docker will bind to all
+> network interfaces.
+
+> It's worth mentioning that `loopback` addresses (e.g. `127.0.0.1`) will not
+> work here, because IBM Cloud services consuming the Secure Gateway will not
+> be able to distinguish between their own `loopback` interfaces and a
+> `loopback` interface on your end of the Secure Gateway.
+
+For the purposes of this code pattern, we'll assume that your LAN IP is
+`192.168.1.100`.
+
 ### Create IBM Cloud service instances
 
 In order to build and train your machine learning model, you'll first need to
@@ -218,26 +238,6 @@ To enable Watson studio to access the on-premise database, select **New Secure G
 The secure gateway allows limited network ingress to your
 on-premise network as governed by an access control list (ACL).
 
-Before you begin, you need to take note of your workstation's LAN IP. You can
-find that address using:
-
-```bash
-$ hostname -I
-192.168.1.100
-```
-
-> Your workstation may have more than one IP, but any of them will likely work
-> for the purposes of this code pattern, because Docker will bind to all
-> network interfaces.
-
-> It's worth mentioning that `loopback` addresses (e.g. `127.0.0.1`) will not
-> work here, because IBM Cloud services consuming the Secure Gateway will not
-> be able to distinguish between their own `loopback` interfaces and a
-> `loopback` interface on your end of the Secure Gateway.
-
-For the purposes of this code pattern, we'll assume that your LAN IP is
-`192.168.1.100`.
-
 From the **Secure Gateway** creation screen, select the **Essentials** plan and click **Create**.
 
 ![New secure gateway](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-10.png)
@@ -246,7 +246,7 @@ Once the gateway is created, select the _disabled_ **Db2** destination.
 
 ![New Secure Gateway](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-11.png)
 
-Select **Clients*, and then **Connect Client**.
+Select **Clients**, and then **Connect Client**.
 
 ![Connect Secure Gateway client](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-12.png)
 
