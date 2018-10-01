@@ -393,7 +393,7 @@ The deployed model will be be provided with documentation to consume the model i
 
 ## Troubleshooting
 
-* `No secure gateways found.`: You're secure gateway client (in Docker) is not connected.
+* `No secure gateways found`: You're secure gateway client (in Docker) is not connected.
 
 ## Links
 
