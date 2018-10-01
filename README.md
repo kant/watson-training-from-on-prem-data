@@ -270,23 +270,25 @@ Incoming connections from Watson Studio which pass through the secure gateway
 will now be able to access Db2.
 
 Lastly, click the gear icon in the top left, and **Enable** the gateway.
-Switch back to the **New Connection** tab in your web browser. Your new Secure Gateway should now be an available option, and you can proceed by clicking the **Create** button.
 
 ![Connect Secure Gateway client](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-13.png)
+
+Switch back to the **New Connection** tab in your web browser.
+Your new Secure Gateway should now be an available option, otherwise you may need to use the **Reload** button.
+
+![Reload secure gateways](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-14.png)
+
+You can finally proceed by clicking the **Create** button.
+
+![Create connection with secure gateway](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-15.png)
 
 > When you're finished with this code pattern, you can close the secure gateway
 > by typing `quit` at the secure gateway prompt and pressing <kbd>Enter</kbd>.
 
-In the secure gateway terminal, you should see a log message indicating that a
+In the secure gateway terminal, you may see a log message indicating that a
 connection was successfully established from Watson Studio:
 
     [2018-08-31 10:38:38.708] [INFO] (Client ID K75lSQ0Oppd_d87) Connection #1 is being established to 192.168.1.100:50000
-
-Click the **Add to Project** dropdown again, and choose **Connected assets**.
-
-Click **Select source**, then choose the **On-Premise** connection, then the
-**WATSON** database, then the **VIOLATIONS** table, and finally, click the
-**Select** button at the bottom of the screen.
 
 #### Refine the asset
 
@@ -294,16 +296,54 @@ Watson Machine Learning models do not directly support data assets from
 on-premise Db2 instances, so we have to setup a conversion process to "refine"
 the data asset into a `CSV` file in object storage.
 
-From the **Data assets** table, click on **Violations** (with **Data Asset** in
-the **Type** column). At the top right, click **Refine**. We don't need to
+Click the **Add to Project** dropdown again, and choose **Connected assets**.
+
+![Add connected assets](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-16.png)
+
+Click **Select source**, then choose the **On-Premise** connection, then the
+**WATSON** database, then the **VIOLATIONS** table, and finally, click the
+**Select** button at the bottom of the screen.
+
+![Select source](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-17.png)
+
+Name the data asset `Violations On-Premise` and click **Create**.
+
+![Name the data asset](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-18.png)
+
+We now need to associate our Apache Spark service and Watson Machine Learning services
+to Watson Studio so that Watson Studio can leverage them.
+
+Navigate to the **Settings** tab of your project, and click **Add service**.
+Choose **Spark** from the dropdown, switch to the **Existing** tab, select your Apache Spark instance
+from the list, and click **Select**.
+
+![Associate Apache Spark](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-19.png)
+
+Once more, click **Add service**. Choose **Watson** from the dropdown,
+select your Watson Machine Learning instance from the catalog, click **Create**, and then **Confirm**.
+
+![Associate Watson](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-20.png)
+
+From your project overview, click the **Assets** tab, and click on
+**Violations On-Premise** (with **Data Asset** in the **Type** column).
+
+![Data assets](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-21.png)
+
+At the top right, click **Refine**. We don't need to
 manipulate the data, so simply click the "run" button labeled with a
 **&#9654;** icon at the top right. The data flow output will show that you're
 creating a `CSV` file, which will be saved into your object storage bucket.
-Click **Save and Run**. You can then opt to view the data flow's progress by
+Click **Save and Run**.
+
+![Refine data asset](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-22.png)
+
+You can then opt to view the data flow's progress by
 clicking **View Flow**.
 
 From your project **Assets** screen, you should now see a new **Data asset**
-named `Violations_shaped.csv`.
+named `Violations On-Premise_shaped.csv`.
+
+![Shaped data](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-26.png)
 
 ### Create a machine learning model
 
