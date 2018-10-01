@@ -354,18 +354,27 @@ model**. Name your model **Violations Predictor**, select your Apache Spark
 service instance from the **Spark Service or Environment** dropdown, and click
 **Create**.
 
+![Violations predictor](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-25.png)
+
 You'll then be asked to choose your data asset. Use the radio button to select
-the CSV file you just created, named `Violations_shaped.csv`, and click
+the CSV file you just created, named `Violations On-Premise_shaped.csv`, and click
 **Next**.
+
+![Shaped data](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-26.png)
 
 When the data is finished loading, you'll be asked to **Select a technique**.
 Choose `INSPECTION_STATUS (String)` as your **Column value to predict (Label
 Col)**, and choose **Multiclass Classification** as your technique. Click
 **Train**.
 
+![Configure model](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-27.png)
+
 When training is complete, click **Save** to store your model.
 
-You can now use the model's endpoint in your own application.
+![Model training](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-28.png)
+
+You can now use the model's endpoint in your own application. Use the documentation provided along with your model
+to get started in your language of choice.
 
 ## Sample output
 
