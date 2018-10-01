@@ -201,7 +201,7 @@ Click the **Get Started** button to navigate to Watson Studio.
 If you're not already in Watson Studio, select your Watson Studio instance from the IBM Cloud Dashboard, and then click the **Get Started** button.
 
 ![Watson Studio](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-04.png)
- 
+
 From Watson Studio, click the **New Project** button, and select **Complete**, when prompted, to enable all features in Watson Studio.
 
 ![New Watson Studio Project](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-05.png)
