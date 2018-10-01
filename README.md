@@ -373,8 +373,19 @@ When training is complete, click **Save** to store your model.
 
 ![Model training](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-28.png)
 
-You can now use the model's endpoint in your own application. Use the documentation provided along with your model
-to get started in your language of choice.
+You can now deploy the model to use in your own application. Click **Add Deployment**.
+
+![Model trained](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-29.png)
+
+Name the model **Inspection Status**, and click **Save**.
+
+![Model deployment](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-30.png)
+
+Wait for your model to be deployed, and then click on it.
+
+![Model deployed](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-31.png)
+
+The deployed model will be be provided with documentation to consume the model in several different programming languages.
 
 ## Sample output
 
