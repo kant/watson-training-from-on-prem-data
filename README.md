@@ -369,7 +369,7 @@ You can now use the model's endpoint in your own application.
 
 ## Sample output
 
-![Ready to consume cloud-based model](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-33.png)
+![Ready to consume cloud-based model](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-32.png)
 
 ## Troubleshooting
 
