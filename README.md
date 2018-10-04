@@ -142,7 +142,7 @@ docker exec db2 su - db2inst1 -c "db2 CONNECT TO onprem USER watson USING secret
 At this point, you have a Db2 database instance loaded with sample data.
 
 Before you proceed further, you also need to take note of your workstation's
-LAN IP. You can find that address using either `hostnam -I` or `ifconfig`,
+LAN IP. You can find that address using either `hostname -I` or `ifconfig`,
 depending on what platform you're on.
 
 ```bash
