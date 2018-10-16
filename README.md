@@ -185,7 +185,7 @@ and then the [**Object
 Storage**](https://console.bluemix.net/catalog/services/cloud-object-storage)
 service. Then, click **Create**.
 
-![Create IBM Cloud Object Storage service](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-01.png)
+![Create IBM Cloud Object Storage service](doc/source/images/watson-training-from-on-prem-data-01.png)
 
 From the [IBM Cloud Catalog](https://console.bluemix.net/catalog/), select the
 [**Web and
@@ -194,7 +194,7 @@ category, and then the [**Apache
 Spark**](https://console.bluemix.net/catalog/services/apache-spark) service.
 Then, click **Create**.
 
-![Create IBM Cloud Apache Spark instance](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-02.png)
+![Create IBM Cloud Apache Spark instance](doc/source/images/watson-training-from-on-prem-data-02.png)
 
 ### Configure a secure gateway to IBM Cloud
 
@@ -208,21 +208,21 @@ category, and then the [**Secure
 Gateway**](https://console.bluemix.net/catalog/services/apache-spark) service.
 Then, click **Create**.
 
-![New secure gateway](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-03.png)
+![New secure gateway](doc/source/images/watson-training-from-on-prem-data-03.png)
 
 From the **Secure Gateway** creation screen, select the **Essentials** plan and
 click **Create**.
 
-![New secure gateway](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-04.png)
+![New secure gateway](doc/source/images/watson-training-from-on-prem-data-04.png)
 
 Once the gateway is created, click **Add Gateway** to add a gateway named _Db2_.
 
-![New Secure Gateway](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-05.png)
+![New Secure Gateway](doc/source/images/watson-training-from-on-prem-data-05.png)
 
 Select **Connect Client**, and take note of your **Gateway ID** and **Security
 Token**. Choose **Docker** as the connection method.
 
-![Connect Secure Gateway client](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-06.png)
+![Connect Secure Gateway client](doc/source/images/watson-training-from-on-prem-data-06.png)
 
 The console will provide you with a complete Docker command to download and run
 the secure gateway client, which looks something like `docker run -it
@@ -252,28 +252,28 @@ the [**Watson
 Studio**](https://console.bluemix.net/catalog/services/watson-studio) service.
 Then, click **Create**.
 
-![Create IBM Cloud Watson Studio service](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-07.png)
+![Create IBM Cloud Watson Studio service](doc/source/images/watson-training-from-on-prem-data-07.png)
 
 Click the **Get Started** button to navigate to Watson Studio.
 
 From Watson Studio, click the **New Project** button, and select **Complete**, when prompted, to enable all features in Watson Studio.
 
-![Watson Studio](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-08.png)
+![Watson Studio](doc/source/images/watson-training-from-on-prem-data-08.png)
 
-![Watson Studio](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-09.png)
+![Watson Studio](doc/source/images/watson-training-from-on-prem-data-09.png)
 
 Enter `Violations` as the project name, and click **Create**.
 
-![Watson Studio](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-10.png)
+![Watson Studio](doc/source/images/watson-training-from-on-prem-data-10.png)
 
 Near the top right of the screen, select the **Add to project** dropdown and choose
 **Connection**.
 
-![New Watson Studio connection](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-11.png)
+![New Watson Studio connection](doc/source/images/watson-training-from-on-prem-data-11.png)
 
 Select **Db2** from the available options to connect to your on-premise Db2 server.
 
-![New Watson Studio connection](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-12.png)
+![New Watson Studio connection](doc/source/images/watson-training-from-on-prem-data-12.png)
 
 Configure the connection as follows:
 
@@ -287,7 +287,7 @@ Configure the connection as follows:
 
 Click **Create** when you are ready.
 
-![New connection configuration](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-13.png)
+![New connection configuration](doc/source/images/watson-training-from-on-prem-data-13.png)
 
 In the secure gateway terminal, you may see a log message indicating that a
 connection was successfully established from Watson Studio:
@@ -302,17 +302,17 @@ the data asset into a `CSV` file in object storage.
 
 Click the **Add to Project** dropdown again, and choose **Connected assets**.
 
-![Add connected assets](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-14.png)
+![Add connected assets](doc/source/images/watson-training-from-on-prem-data-14.png)
 
 Click **Select source**, then choose the **On-Premise** connection, then the
 **WATSON** database, then the **VIOLATIONS** table, and finally, click the
 **Select** button at the bottom of the screen.
 
-![Select source](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-15.png)
+![Select source](doc/source/images/watson-training-from-on-prem-data-15.png)
 
 Name the data asset `Violations On-Premise` and click **Create**.
 
-![Name the data asset](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-16.png)
+![Name the data asset](doc/source/images/watson-training-from-on-prem-data-16.png)
 
 We now need to associate our Apache Spark service and Watson Machine Learning services
 to Watson Studio so that Watson Studio can leverage them.
@@ -321,17 +321,17 @@ Navigate to the **Settings** tab of your project, and click **Add service**.
 Choose **Spark** from the dropdown, switch to the **Existing** tab, select your Apache Spark instance
 from the list, and click **Select**.
 
-![Associate Apache Spark](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-17.png)
+![Associate Apache Spark](doc/source/images/watson-training-from-on-prem-data-17.png)
 
 Once more, click **Add service**. Choose **Watson** from the dropdown,
 select your Watson Machine Learning instance from the catalog, click **Create**, and then **Confirm**.
 
-![Associate Watson](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-18.png)
+![Associate Watson](doc/source/images/watson-training-from-on-prem-data-18.png)
 
 From your project overview, click the **Assets** tab, and click on
 **Violations On-Premise** (with **Data Asset** in the **Type** column).
 
-![Data assets](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-19.png)
+![Data assets](doc/source/images/watson-training-from-on-prem-data-19.png)
 
 At the top right, click **Refine**. We don't need to
 manipulate the data, so simply click the "run" button labeled with a
@@ -339,7 +339,7 @@ manipulate the data, so simply click the "run" button labeled with a
 creating a `CSV` file, which will be saved into your object storage bucket.
 Click **Save and Run**.
 
-![Refine data asset](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-20.png)
+![Refine data asset](doc/source/images/watson-training-from-on-prem-data-20.png)
 
 You can then opt to view the data flow's progress by
 clicking **View Flow**.
@@ -347,55 +347,55 @@ clicking **View Flow**.
 From your project **Assets** screen, you should now see a new **Data asset**
 named `Violations On-Premise_shaped.csv`.
 
-![Shaped data](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-21.png)
+![Shaped data](doc/source/images/watson-training-from-on-prem-data-21.png)
 
 ### Create a machine learning model
 
 From your project's **Assets** screen, click **New Watson Machine Learning
 model**.
 
-![New machine learning model](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-22.png)
+![New machine learning model](doc/source/images/watson-training-from-on-prem-data-22.png)
 
 Name your model **Violations Predictor**, select your Apache Spark service
 instance from the **Spark Service or Environment** dropdown, and click
 **Create**.
 
-![Violations predictor](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-23.png)
+![Violations predictor](doc/source/images/watson-training-from-on-prem-data-23.png)
 
 You'll then be asked to choose your data asset. Use the radio button to select
 the CSV file you just created, named `Violations On-Premise_shaped.csv`, and click
 **Next**.
 
-![Shaped data](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-24.png)
+![Shaped data](doc/source/images/watson-training-from-on-prem-data-24.png)
 
 When the data is finished loading, you'll be asked to **Select a technique**.
 Choose `INSPECTION_STATUS (String)` as your **Column value to predict (Label
 Col)**, and choose **Multiclass Classification** as your technique. Click
 **Next**.
 
-![Configure model](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-25.png)
+![Configure model](doc/source/images/watson-training-from-on-prem-data-25.png)
 
 When training is complete (_Trained &amp; Evaluated_), click **Save** to store your model.
 
-![Model training](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-26.png)
+![Model training](doc/source/images/watson-training-from-on-prem-data-26.png)
 
 You can now deploy the model to use in your own application. Click **Add Deployment**.
 
-![Model trained](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-27.png)
+![Model trained](doc/source/images/watson-training-from-on-prem-data-27.png)
 
 Name the model **Inspection Status**, and click **Save**.
 
-![Model deployment](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-28.png)
+![Model deployment](doc/source/images/watson-training-from-on-prem-data-28.png)
 
 Wait for your model to be deployed (_DEPLOY_SUCCESS_), and then click on it.
 
-![Model deployed](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-29.png)
+![Model deployed](doc/source/images/watson-training-from-on-prem-data-29.png)
 
 The deployed model will be be provided with documentation to consume the model in several different programming languages.
 
 ## Sample output
 
-![Ready to consume cloud-based model](http://browser-testing-cdn.dolphm.com/watson-training-from-on-prem-data-30.png)
+![Ready to consume cloud-based model](doc/source/images/watson-training-from-on-prem-data-30.png)
 
 ## Troubleshooting
 
