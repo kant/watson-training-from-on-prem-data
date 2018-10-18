@@ -370,12 +370,20 @@ the CSV file you just created, named `Violations On-Premise_shaped.csv`, and cli
 
 When the data is finished loading, you'll be asked to **Select a technique**.
 Choose `INSPECTION_STATUS (String)` as your **Column value to predict (Label
-Col)**, and choose **Multiclass Classification** as your technique. Click
-**Next**.
+Col)**, and choose **Multiclass Classification** as your technique.
+
+Next, we need to manually select which classifier we'd like to use. Use the
+**Add Estimators** button to add a **Decision Tree Classifier**, and then
+repeat to add a **Random Forest Classifier**.
+
+Finally, click **Next**.
 
 ![Configure model](doc/source/images/watson-training-from-on-prem-data-25.png)
 
-When training is complete (_Trained &amp; Evaluated_), click **Save** to store your model.
+When training for each model is complete (_Trained &amp; Evaluated_), review
+each of their performance metrics, select the one that best suits your use case
+(we'll use the _DecisionTreeClassifier_ here). Click **Save** to store your
+model.
 
 ![Model training](doc/source/images/watson-training-from-on-prem-data-26.png)
 
