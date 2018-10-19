@@ -1,4 +1,4 @@
-# Train a cloud-based machine learning model from on-premise data
+# Train a cloud-based machine learning model from on-premise Db2 data
 
 [![Build Status](https://travis-ci.org/IBM/watson-training-from-on-prem-data.svg?branch=master)](https://travis-ci.org/IBM/watson-training-from-on-prem-data)
 
